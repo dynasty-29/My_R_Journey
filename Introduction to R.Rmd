@@ -1,0 +1,528 @@
+---
+title: "Introduction to R"
+output:
+  html_document: default
+  pdf_document: default
+date: "`r Sys.Date()`"
+---
+
+# Operations
+
+Operators are those symbols which tell the computer to perform precise mathematics or logical manipulations. R programming is loaded with built in operators some of which are shown below:
+
+## 1, Arithmetic Operators
+
+We are going to learn about arithmetic operators using the following examples;
+
+### 1.1 Addition code Example
+
+```R
+## Example
+#---
+# Assigning variables
+# ---
+
+x <- 5
+y <- 16
+
+
+# Add the variables together
+
+x + y
+
+````
+
+#### 1.2 Subraction Code Example
+
+```R
+# Subracting our variables
+#----
+
+x-y
+
+y-x
+
+```
+#### 1.3 Multiplication code Example
+
+```R
+
+# Multiplying our variables
+#---
+
+x*y
+
+```
+#### 1.4 Division code Example
+
+```R
+
+# Dividing our variables
+#----
+x/y
+
+```
+#### 1.5 Modulus Code Example
+
+```R
+
+#Using Modulus to our varibles
+#---
+
+y%%x
+
+```
+
+#### More Challenges
+
+```R
+# Find the addition, substraction, multiplication, division, modulus of a and b when a = 10 and b = 4.
+#---
+
+# First lets assign our variables
+
+a <- 10
+b <- 4
+
+# Addition
+
+a + b
+
+# Subtraction
+
+a - b
+
+# Multiplication
+
+a * b
+
+# Division
+
+a/b
+
+# Modulo
+
+a%%b
+
+```
+
+```R
+
+## Challenge
+#----
+# Fix the code below to get an output of 1. 
+c <- 10
+d <- 2
+c%%d
+
+# this gives us zero
+#When we reverse we get 2
+
+d%%c
+
+# so if we divide the reverse by 2 we get one
+
+```
+
+```R
+
+## Challenge
+#---
+# Fix the code below to get an output of 25. 
+a <- 5
+b <- 4
+
+b - a + 10 / 2 * a * 3 + 10 +59
+
+# From the above we get 143
+#--- 
+# Our aim is to get 25
+
+b + a + 10/2 * a * 3 - 10 - 59
+
+```
+
+## 2. Relational Operators
+
+We are going to learn about relational operators.
+
+### 2.1 Less than code Example
+
+```R
+
+## Applying less than operator using the x and y variables
+
+x
+y
+
+# When we call these variables we see x is 5 and y is 16 from the previously stored variable exercise
+
+# And now find out whether x is less than y.
+
+x < y
+
+# after running this we get True since 5 is less than 16
+
+```
+
+#### 2.2 Greater than code Example
+
+```R 
+
+# Let's find out if x is greater than y
+
+x>y
+
+# When we run this we get False since 5 isnot greater than 16
+
+```
+
+#### 2.3 Less than or Equal to code Example
+
+```R
+
+# lets see if x is less than or equal to y
+
+x <= y
+
+# When we run this we get TRUE
+
+```
+
+#### 2.4 Greater than or Equal to code Example
+
+```R
+
+# Let's find out if x is greater or equal to y
+
+x >= y
+
+# When we run this we get a FALSE
+
+```
+
+#### 2.5 Equal to code Example
+
+```R
+
+# Find out whether y is equal to y using the equal to operator ==
+
+x == y
+
+# When we run this we get a false since 5 isn't equal to 16
+
+```
+
+#### 2.6 Not Equal to code Example
+
+```R
+
+# ---
+# Find out whether x is not equal to y using the not equal to operator !=
+
+x != y
+
+# When we run this we get a TRUE since 5 is definitely not equal to 16
+
+```
+
+## 3. Logical Operators
+Logical operators are applicable only to vectors of type logical, numeric or complex. Each element of the first vector is compared with the corresponding element of the second vector. 
+The result of comparison is a Boolean value.
+
+#### 3.1 Element-wise Logical AND operator code Example
+
+```R
+# ---
+# Lets create two vectors v and t
+
+v <- c(3,1,TRUE,2+3i)
+t <- c(4,1,FALSE,2+3i)
+
+# Then we use the element-wise logical and operator & as follows
+
+v&t
+
+# when we run this we get TRUE  TRUE FALSE  TRUE
+# This is because the operator combines the first vector with the corresponding 
+# second vector and gives an output TRUE if both the elements are true
+# so first vector 3, 1 are intergers so is second vector 4, 1. 
+# The TRUE and FALSE element of first and second vector are not similar so we get an output of FALSE.
+# The final elements of both vectors are similar 2+3i so we get an output TRUE
+
+```
+
+#### 3.2 Element-wise Logical OR operator Code Example 
+
+```R
+# ----
+# First let's create two vectors
+# ----
+
+v <- c(0,0,TRUE,2+2i) 
+t <- c(0,3,TRUE,2+3i)
+
+# We then use the element wise logical or operator
+
+v|t
+
+# When we run this we get FALSE  TRUE  TRUE  TRUE
+# The element wise operator combines each element fo the first vector with the corresponding elements of the second vector and give a TRUE output if one element is true.
+# 0 and 0 elements on both vectors gives us FALSE because  It just means the “perpendicularity” (or orthogonality) of the zero vector isn’t particularly interesting or useful.
+# so 0 and 3 are both intergers giving us TRUE
+# TRUE and TRUE are similar giving us TRUE
+# 2+3i elements are similar giving use TRUE
+
+
+```
+
+#### 3.3 The Logical OR operator Code Example
+
+```R
+#---
+# Let's first create two vectors
+#---
+
+v <- c(3,1,TRUE,2+3i) 
+t <- c(4,1,FALSE,2+3i) 
+
+# Now let's use the logical not operator
+
+v||t
+
+# When we run this we get TRUE
+# This is because Logical OR operator take first element of both the vectors and gives TRUE is one of them is TRUE 
+# From our vector the first element of both vector is an integer giving us TRUE
+
+```
+
+#### 3.4  The Logical AND operator Code Example 
+
+```R
+# ---
+# Lets create two vectors
+# ----
+v <- c(3,1,TRUE,2+3i) 
+t <- c(4,1,FALSE,2+3i) 
+
+# Now let's use the logical ANd operator
+
+v && t
+
+# when we run this we get TRUE
+# this is because logical AND takes first element of both the vectors and gives TRUE only if both are TRUE
+# in our case the first element of vector one is an interger and so is the first element of the second vector giving us the output TRUE since they satisfiy the rule
+
+
+```
+## 4. Assignment Operators 
+
+#### 4.1  Left Assignment Operator Code Example 
+
+```R
+
+#----
+# will create vectors using different left assignment operators
+#----
+
+v1 <- c(3,1,TRUE,2+3i) 
+v2 <<- c(3,1,TRUE,2+3i) 
+v3 = c(3,1,TRUE,2+3i) 
+
+# If we print one of the vector e.g v1
+
+v1
+
+# we get 3+0i 1+0i 1+0i 2+3i
+
+# If we print v2
+
+v2
+
+# we get 3+0i 1+0i 1+0i 2+3i
+# this mean '<' and '<<' both give the same assignment
+
+# If we print v3
+
+v3
+
+# we get  3+0i 1+0i 1+0i 2+3i
+# this means all the three operators works the same
+
+
+```
+
+#### 4.2  Right Assignment Operator Code Example 
+
+```R
+
+#---
+# We get to use the right assignment operator
+# first we assign the vectors
+# ----
+c(3,1,TRUE,2+3i) -> v1 
+c(3,1,TRUE,2+3i) ->> v2 
+
+# if we print v1
+
+v1
+
+# we get 3+0i 1+0i 1+0i 2+3i
+
+# if we print v2
+
+v2
+
+# we get 3+0i 1+0i 1+0i 2+3i
+# both operators assigns similarily
+
+```
+
+## 5. Variable Assignment  
+
+Variables can be assigned values using leftward, rightward and equal to operator.
+
+#### 5.1  Right Assignment Operator Code Example 
+
+```R
+
+# ---
+# Now letUse the right assignment operators to assign the vectors to the respective variables as shown below;
+# ---
+# first we create vectors
+# 
+variable.1 = c(3,4,5,6)  
+
+variable.1
+
+#when we run this we get 3 4 5 6
+
+
+# create another vectors
+
+variable.2 <- c("Hello"," there")  
+
+variable.2
+
+#when we run this we get "Hello"  " there"
+
+# One more vector
+
+c(TRUE,2) -> variable.3 
+
+# if we call 
+variable.3
+
+# We get  1 2
+
+```
+
+## 6. Basic Data Types
+
+There are several basic data types in R which are of frequent occurrence. 
+
+#### 6.1 Numeric Data Type Code Example
+
+```R
+
+#---
+# lets first assign a value to a variable
+# ---
+m = 62.4
+
+# if we print the variable we get the value as the output
+m
+
+```
+Assigning a decimal value for any variable m, m will become a numeric type as shown above.
+
+
+#### 6.2 Integer Data Type Code Example
+
+
+Any integer in R is created by invoking the as.integer() function as shown below:
+
+```R
+#---
+# Let't create an integer 3 and assign it to variable n
+
+n = as.integer(3)
+
+#If we print n we get three
+
+n
+
+
+# Let's convert 3.14 to an integer and save it under variable p.
+
+p = as.integer(3.14)
+
+p
+
+# If we print p we get 3 since float 3 has been converted to 3
+
+```
+
+#### 6.3 Complex Data Type Code Example
+
+
+```R
+# ---
+# We can also assign a complex number and assign it to the variable k just as shown below
+# ---
+# 
+k = 1 + 2i  
+
+# if we print k
+
+k
+
+# we get 1+2i
+
+
+```
+
+#### 6.4 Logical Data Type Code Example
+
+A logical value is created when comparison between variables is done as shown:
+
+
+```R
+
+# To create a logical value we are first going to create two variables x and y variables
+# ---
+#
+x = 4;  y = 6   
+
+# Now we check whether x is greater than y
+# ---
+# 
+z = x > y  
+
+# when we print z
+
+z
+
+# We get FALSE since 4 isn't greater than 6
+
+
+```
+
+#### 6.5 Character Data Type Code Example
+
+A character value can also be created and stored in a variable g.
+
+
+```R
+
+# ---
+# Convert the value 62.48 to a string and store it a variable g
+# ---
+#
+g = as.character(62.48)  
+
+# Then print the character string g
+
+g
+
+# We get a string : "62.48"
