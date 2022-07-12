@@ -1,0 +1,287 @@
+---
+title: "R Basics - List and Vectors"
+author: "Dynasty"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Lists and Vectors
+
+## 1. Creating
+
+### Lists
+
+#### 1.1 Lists Code Example
+
+
+###### List are R objects that contain elements of different types like numbers, strings, vectors, matrices, functions and lists too.
+
+
+##### Will create a list using list() function
+```{r}
+alist <- list ("Red", "Blue", c(42,36,01), FALSE, 73.91, 128.6)
+```
+
+
+
+
+##### if we print our list
+
+```{r}
+alist
+```
+
+
+##### we get the enclosed list
+
+
+
+
+## Vectors
+
+
+
+
+
+###### will create three vectors; a, b, c
+
+```{r}
+a <- c(1,2,5.3,6,-2,4)                   # numeric vector 
+b <- c("one","two","three")              # character vector 
+c <- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE)  # logical vector
+```
+
+##### Print out these vectors
+```{r}
+a
+```
+```{r}
+b
+```
+```{r}
+c
+```
+
+
+
+
+
+
+## 2. Naming
+
+### Lists
+
+#### 2.1 Naming Lists Code Example
+
+
+
+
+##### The elements in a list can be given names which would allow one to have access to those elements as shown below
+
+##### first we create list containing vector, matrix and a list
+
+```{r}
+list_data <- list(c("Jan","Feb","Mar"), matrix(c(3,9,5,1,-2,8), nrow = 2), list("green",12.3))
+```
+
+##### Next we give names to the elements
+```{r}
+names(list_data) <- c("1st Quarter", "A_Matrix", "A Inner list") 
+```
+
+##### Now we print out the list data below and you can see the output
+```{r}
+list_data
+```
+
+
+
+## Vectors
+
+##### 2.2 Naming Vectors Code Example
+
+
+
+
+##### You can give a name to the elements of a vector with the names() function as shown below
+
+```{r}
+a <- c("Serena Williams", "Tennis Player") 
+names(a) <- c("Name", "Profession")
+```
+
+##### we can print out theses vectors and view the output as below
+
+```{r}
+a
+
+```
+
+
+##### Let's Have some more fun with this
+
+```{r}
+f <- c("Chimamanda Ngozi", "Non Fiction Author", "Americanah")
+names(f) <- c("Name", "Genre", "Book")
+```
+
+
+##### We print this and view the output
+
+```{r}
+f
+```
+
+
+
+# 3. Selection
+
+### Lists
+
+#### 3.1 List Selection Code Example
+
+
+
+
+
+##### Every element of the list can be accessed by the use of square brackets,and by numeric indices or by the logical index or by using element names.:
+
+
+##### lets create a list
+
+```{r}
+ls <- list( first = 2, second = 4, third = list( fourth = 3.2, fifth = 6.4 ) )
+```
+##### Printing first and second elements of the list
+```{r}
+ ls [1:2]
+```
+
+##### IF you want the third element from the last inthe list
+
+```{r}
+ls[-3]
+```
+
+##### Another way to ask for first and second element on the list
+```{r}
+ls [c ("first", "second")]
+```
+
+
+
+
+## Vectors
+
+#### 3.1 Vector Selection Code Example
+
+
+
+
+##### First let's create a numeric vector
+
+```{r}
+a <- c(1,2,5.3,6,-2,4) 
+```
+
+##### IF we want the second and third element inthe vector
+```{r}
+a[c(2,3)]
+```
+
+
+
+# 4. Adding
+
+### Lists
+
+#### 4.1 Adding Lists Code Example
+
+
+
+
+##### we can add an element only at the end of a list
+
+##### First lets create a vector and a matrix
+
+```{r}
+list_data <- list(c("Jan","Feb","Mar"), matrix(c(3,9,5,1,-2,8), nrow = 2))
+```
+
+##### now we add an element
+
+```{r}
+list_data[4] <- "New element" 
+list_data[4]
+```
+
+
+
+
+
+### Let's  challenge ourselves
+
+##### First we create an empty list 
+```{r}
+months_of_the_years <- c()
+```
+
+##### Then we add the twelve months of the year
+```{r}
+months_of_the_years[1] <- "January"
+```
+```{r}
+months_of_the_years
+```
+```{r}
+months_of_the_years[2] <- "February"
+months_of_the_years[3] <- "March"
+months_of_the_years[4] <- "April"
+months_of_the_years[5] <- "May"
+months_of_the_years[6] <- "June"
+months_of_the_years[7] <- "July"
+months_of_the_years[8] <- "August"
+months_of_the_years[9] <- "September"
+months_of_the_years[10] <- "October"
+months_of_the_years[11] <- "November"
+months_of_the_years[12] <- "December"
+```
+#### Let's see our full list
+```{r}
+months_of_the_years
+```
+
+### Vectors
+
+#### 4.2 Adding Vectors Code Example
+
+#### Vectors can be combined via fuction c
+
+# first let's create our vectors
+```{r}
+p = c(1, 2, 3)
+q = c("aa", "bb", "cc")
+```
+
+#### now lets combine the vectors
+```{r}
+c(p, q)
+```
+
+##### let's put that into practice
+
+### First we create our vectors
+```{r}
+a <- c("Serena Williams", "Tennis Player") 
+names(a) <- c("Name", "Profession")
+```
+
+##### combining the two
+```{r}
+c(a, a)
+```
+
