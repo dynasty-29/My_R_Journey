@@ -1,8 +1,8 @@
 ---
 title: "Introduction to R"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 date: "`r Sys.Date()`"
 ---
 
@@ -526,3 +526,5 @@ g = as.character(62.48)
 g
 
 # We get a string : "62.48"
+
+```
