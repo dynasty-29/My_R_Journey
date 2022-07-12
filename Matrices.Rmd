@@ -1,0 +1,273 @@
+---
+title: "Matrices"
+author: "Dynasty"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Matrices
+
+A matrix is a two dimensional data structure that is similar to a vector but additionally contains the dimension attribute.
+
+## 1. Creating
+
+When creating a matrix, the last two arguments to matrix tell it the number of rows and columns the matrix should have.
+
+
+#### 1.1 Matrix Code Example
+
+You can use the byrow=TRUE argument to create a matrix by rows instead of by columns as shown below:
+
+##### Let's create a matrix mymat
+
+```{r}
+mymat <- matrix(1:12,4,3)
+```
+
+##### printing out matrix
+```{r}
+mymat
+```
+
+
+#### 1.2 Matrix Code Example
+
+
+##### Let's use the byrow=TRUE argument to create a matrix by rows instead of by columns as shown below
+
+```{r}
+mymat <- matrix(1:12,ncol=3,byrow=TRUE)
+```
+
+
+##### print our matrix
+```{r}
+mymat
+```
+
+
+## 2. Naming
+
+#### 2.1 Matrix Naming Code Example
+
+#### # In order to remember what is stored in a matrix, you can add the names of the columns and rows. This will also help you to read the data as well as select elements from the matrix.
+
+#### Let's create our matrix
+```{r}
+kenya <- c(460.998, 314.4) 
+ethiopia <- c(290.475, 247.900) 
+chad <- c(309.306, 165.8)
+```
+
+#### Then create a matrix geography matrix
+```{r}
+geography_matrix <- matrix(c(kenya, ethiopia, chad), nrow = 3, byrow = TRUE)
+```
+
+##### Now let's start naming
+```{r}
+location <- c("Lat", "Long")
+countries <- c("Kenya", "Ethiopia", "Chad")
+```
+
+##### Now let's name the columns with location
+```{r}
+colnames(geography_matrix) <- location
+```
+
+### Let's name the rows with countries
+```{r}
+rownames(geography_matrix) <- countries
+```
+
+##### Now let's print final product
+```{r}
+geography_matrix
+```
+
+#### Now let's create a matrix family with column names Name, Age, Gender and Occupation.
+```{r}
+Matriachy <- c("Matriachy", 60, "F", "Queen")
+Ryan <- c("Ryan", 7, "M", "Student")
+Dynasty <- c("Dynasty", 30, "F", "Scientist")
+Migan <- c("Migan", 26, "F", "Chef")
+Wolfcode <- c("Wolfcode", 19, "M", "Engineer")
+```
+```{r}
+family <- matrix(c(Matriachy, Ryan, Dynasty, Migan, Wolfcode), nrow = 5, byrow = TRUE)
+```
+```{r}
+Header <- c("Name", "Age", "Gender", "Occupation")
+```
+```{r}
+Name <- c("Matriachy", "Ryan", "Dynasty", "Migan", "Wolfcode")
+```
+
+```{r}
+colnames(family) <- Header
+```
+```{r}
+rownames(family) <- Name
+```
+
+```{r}
+family
+```
+
+
+## 3. Adding a Column
+
+You can add a row to a matrix using the rbind() function.
+
+#### 3.1 Adding a Column Code Example
+
+#### let's create an x matrix
+```{r}
+x <- matrix(1:9, nrow = 3)
+```
+
+#### Then ass a column
+```{r}
+```
+
+
+```{r}
+cbind(x, c(1, 2, 3))
+```
+
+
+
+##### Let's Add a column residence to your fictional family matrix 
+
+```{r}
+cbind(family, c("Arabia Terra", "Amazonis Planitia", "Amazonis Planitia", "Arabia Terra", "Amazonis Planitia"))
+```
+
+## 4. Adding a Row
+
+#### 4.1 Adding a Row Code Example
+
+#### Let's create a matrix
+```{r}
+x <- matrix(1:9, nrow = 3)
+```
+
+#### now let's add a row using cbind
+```{r}
+rbind(x,c(1,2,3))
+
+```
+#### Let's Add a fictional character to our fictional family matrix
+```{r}
+rbind(family, c("Ruby", 3, "F", "Youngling", "Amazonis Planitia"))
+```
+
+## 5. Selecting a Matrix
+
+To select an element of a matrix, one needs to specify both the row and the column as shown:
+
+#### Let's first select a matrix
+```{r}
+x <- matrix(1:9, nrow = 3)
+```
+#### let's Select the elements from the above matrix 
+
+##### selecting the elemnt at 1st row 3rd column
+```{r}
+x[1,3]
+```
+
+#### Selecting second row
+```{r}
+x[2, ]
+```
+
+#### selecting 3rd column
+```{r}
+x[ ,3]
+```
+
+#### lets now select the last member of the family
+```{r}
+family[5, ]
+```
+##### selecting the first member of the family
+```{r}
+family[1, ]
+```
+
+## 6. Operations
+
+
+### Matrix addition &amp; subtraction
+
+#### 6.1 Matrix Addition &amp; Subtraction Code Example
+
+ Matrix addition and subtract require the matrices to have the same dimensions.
+ 
+##### Let's create matrices x and y
+ 
+```{r}
+x <- matrix(c(3, 9, -1, 4, 2, 6), nrow = 2)
+y <- matrix(c(5, 2, 0, 9, 3, 4), nrow = 2)
+```
+
+### Print x matrix
+```{r}
+x
+```
+
+##### printing y matrix
+```{r}
+y
+```
+
+
+#### Now we Add the matrices and print out the result
+```{r}
+x + y
+```
+
+#### we even subtract the matrics
+```{r}
+x - y
+```
+
+
+
+### Matrix Multiplication &amp; Division
+
+#### 6.2 Matrix Multiplication &amp; Division Code Example
+
+Let's create two 2 x 3 matrices x and y
+
+```{r}
+x <- matrix(c(3, 9, -1, 4, 2, 6), nrow = 2)
+y <- matrix(c(5, 2, 0, 9, 3, 4), nrow = 2)
+```
+
+#### Multiply the matrices and assign it to variable z
+```{r}
+z <- x * y
+```
+
+#### printing z
+```{r}
+z
+```
+
+
+#### Let also divide the matrices
+```{r}
+z <- x/y
+```
+```{r}
+z
+```
+
