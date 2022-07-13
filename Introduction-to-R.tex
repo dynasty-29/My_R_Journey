@@ -1,0 +1,722 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Introduction to R},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Introduction to R}
+\author{}
+\date{\vspace{-2.5em}2022-07-12}
+
+\begin{document}
+\maketitle
+
+\hypertarget{operations}{%
+\section{Operations}\label{operations}}
+
+Operators are those symbols which tell the computer to perform precise
+mathematics or logical manipulations. R programming is loaded with built
+in operators some of which are shown below:
+
+\hypertarget{arithmetic-operators}{%
+\subsection{1, Arithmetic Operators}\label{arithmetic-operators}}
+
+We are going to learn about arithmetic operators using the following
+examples;
+
+\hypertarget{addition-code-example}{%
+\subsubsection{1.1 Addition code Example}\label{addition-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Example}
+\CommentTok{\#{-}{-}{-}}
+\CommentTok{\# Assigning variables}
+\CommentTok{\# {-}{-}{-}}
+
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{5}
+\NormalTok{y }\OtherTok{\textless{}{-}} \DecValTok{16}
+
+
+\CommentTok{\# Add the variables together}
+
+\NormalTok{x }\SpecialCharTok{+}\NormalTok{ y}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{subraction-code-example}{%
+\paragraph{1.2 Subraction Code Example}\label{subraction-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Subracting our variables}
+\CommentTok{\#{-}{-}{-}{-}}
+
+\NormalTok{x}\SpecialCharTok{{-}}\NormalTok{y}
+
+\NormalTok{y}\SpecialCharTok{{-}}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{multiplication-code-example}{%
+\paragraph{1.3 Multiplication code
+Example}\label{multiplication-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# Multiplying our variables}
+\CommentTok{\#{-}{-}{-}}
+
+\NormalTok{x}\SpecialCharTok{*}\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{division-code-example}{%
+\paragraph{1.4 Division code Example}\label{division-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# Dividing our variables}
+\CommentTok{\#{-}{-}{-}{-}}
+\NormalTok{x}\SpecialCharTok{/}\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{modulus-code-example}{%
+\paragraph{1.5 Modulus Code Example}\label{modulus-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\#Using Modulus to our varibles}
+\CommentTok{\#{-}{-}{-}}
+
+\NormalTok{y}\SpecialCharTok{\%\%}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{more-challenges}{%
+\paragraph{More Challenges}\label{more-challenges}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Find the addition, substraction, multiplication, division, modulus of a and b when a = 10 and b = 4.}
+\CommentTok{\#{-}{-}{-}}
+
+\CommentTok{\# First lets assign our variables}
+
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{4}
+
+\CommentTok{\# Addition}
+
+\NormalTok{a }\SpecialCharTok{+}\NormalTok{ b}
+
+\CommentTok{\# Subtraction}
+
+\NormalTok{a }\SpecialCharTok{{-}}\NormalTok{ b}
+
+\CommentTok{\# Multiplication}
+
+\NormalTok{a }\SpecialCharTok{*}\NormalTok{ b}
+
+\CommentTok{\# Division}
+
+\NormalTok{a}\SpecialCharTok{/}\NormalTok{b}
+
+\CommentTok{\# Modulo}
+
+\NormalTok{a}\SpecialCharTok{\%\%}\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\DocumentationTok{\#\# Challenge}
+\CommentTok{\#{-}{-}{-}{-}}
+\CommentTok{\# Fix the code below to get an output of 1. }
+\NormalTok{c }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{d }\OtherTok{\textless{}{-}} \DecValTok{2}
+\NormalTok{c}\SpecialCharTok{\%\%}\NormalTok{d}
+
+\CommentTok{\# this gives us zero}
+\CommentTok{\#When we reverse we get 2}
+
+\NormalTok{d}\SpecialCharTok{\%\%}\NormalTok{c}
+
+\CommentTok{\# so if we divide the reverse by 2 we get one}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\DocumentationTok{\#\# Challenge}
+\CommentTok{\#{-}{-}{-}}
+\CommentTok{\# Fix the code below to get an output of 25. }
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{5}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{4}
+
+\NormalTok{b }\SpecialCharTok{{-}}\NormalTok{ a }\SpecialCharTok{+} \DecValTok{10} \SpecialCharTok{/} \DecValTok{2} \SpecialCharTok{*}\NormalTok{ a }\SpecialCharTok{*} \DecValTok{3} \SpecialCharTok{+} \DecValTok{10} \SpecialCharTok{+}\DecValTok{59}
+
+\CommentTok{\# From the above we get 143}
+\CommentTok{\#{-}{-}{-} }
+\CommentTok{\# Our aim is to get 25}
+
+\NormalTok{b }\SpecialCharTok{+}\NormalTok{ a }\SpecialCharTok{+} \DecValTok{10}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ a }\SpecialCharTok{*} \DecValTok{3} \SpecialCharTok{{-}} \DecValTok{10} \SpecialCharTok{{-}} \DecValTok{59}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{relational-operators}{%
+\subsection{2. Relational Operators}\label{relational-operators}}
+
+We are going to learn about relational operators.
+
+\hypertarget{less-than-code-example}{%
+\subsubsection{2.1 Less than code
+Example}\label{less-than-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\DocumentationTok{\#\# Applying less than operator using the x and y variables}
+
+\NormalTok{x}
+\NormalTok{y}
+
+\CommentTok{\# When we call these variables we see x is 5 and y is 16 from the previously stored variable exercise}
+
+\CommentTok{\# And now find out whether x is less than y.}
+
+\NormalTok{x }\SpecialCharTok{\textless{}}\NormalTok{ y}
+
+\CommentTok{\# after running this we get True since 5 is less than 16}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{greater-than-code-example}{%
+\paragraph{2.2 Greater than code
+Example}\label{greater-than-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# Let\textquotesingle{}s find out if x is greater than y}
+
+\NormalTok{x}\SpecialCharTok{\textgreater{}}\NormalTok{y}
+
+\CommentTok{\# When we run this we get False since 5 isnot greater than 16}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{less-than-or-equal-to-code-example}{%
+\paragraph{2.3 Less than or Equal to code
+Example}\label{less-than-or-equal-to-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# lets see if x is less than or equal to y}
+
+\NormalTok{x }\SpecialCharTok{\textless{}=}\NormalTok{ y}
+
+\CommentTok{\# When we run this we get TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{greater-than-or-equal-to-code-example}{%
+\paragraph{2.4 Greater than or Equal to code
+Example}\label{greater-than-or-equal-to-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# Let\textquotesingle{}s find out if x is greater or equal to y}
+
+\NormalTok{x }\SpecialCharTok{\textgreater{}=}\NormalTok{ y}
+
+\CommentTok{\# When we run this we get a FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{equal-to-code-example}{%
+\paragraph{2.5 Equal to code Example}\label{equal-to-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# Find out whether y is equal to y using the equal to operator ==}
+
+\NormalTok{x }\SpecialCharTok{==}\NormalTok{ y}
+
+\CommentTok{\# When we run this we get a false since 5 isn\textquotesingle{}t equal to 16}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{not-equal-to-code-example}{%
+\paragraph{2.6 Not Equal to code
+Example}\label{not-equal-to-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\# Find out whether x is not equal to y using the not equal to operator !=}
+
+\NormalTok{x }\SpecialCharTok{!=}\NormalTok{ y}
+
+\CommentTok{\# When we run this we get a TRUE since 5 is definitely not equal to 16}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{logical-operators}{%
+\subsection{3. Logical Operators}\label{logical-operators}}
+
+Logical operators are applicable only to vectors of type logical,
+numeric or complex. Each element of the first vector is compared with
+the corresponding element of the second vector. The result of comparison
+is a Boolean value.
+
+\hypertarget{element-wise-logical-and-operator-code-example}{%
+\paragraph{3.1 Element-wise Logical AND operator code
+Example}\label{element-wise-logical-and-operator-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\# Lets create two vectors v and t}
+
+\NormalTok{v }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i)}
+\NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{FALSE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i)}
+
+\CommentTok{\# Then we use the element{-}wise logical and operator \& as follows}
+
+\NormalTok{v}\SpecialCharTok{\&}\NormalTok{t}
+
+\CommentTok{\# when we run this we get TRUE  TRUE FALSE  TRUE}
+\CommentTok{\# This is because the operator combines the first vector with the corresponding }
+\CommentTok{\# second vector and gives an output TRUE if both the elements are true}
+\CommentTok{\# so first vector 3, 1 are intergers so is second vector 4, 1. }
+\CommentTok{\# The TRUE and FALSE element of first and second vector are not similar so we get an output of FALSE.}
+\CommentTok{\# The final elements of both vectors are similar 2+3i so we get an output TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{element-wise-logical-or-operator-code-example}{%
+\paragraph{3.2 Element-wise Logical OR operator Code
+Example}\label{element-wise-logical-or-operator-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# {-}{-}{-}{-}}
+\CommentTok{\# First let\textquotesingle{}s create two vectors}
+\CommentTok{\# {-}{-}{-}{-}}
+
+\NormalTok{v }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{2i) }
+\NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{3}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i)}
+
+\CommentTok{\# We then use the element wise logical or operator}
+
+\NormalTok{v}\SpecialCharTok{|}\NormalTok{t}
+
+\CommentTok{\# When we run this we get FALSE  TRUE  TRUE  TRUE}
+\CommentTok{\# The element wise operator combines each element fo the first vector with the corresponding elements of the second vector and give a TRUE output if one element is true.}
+\CommentTok{\# 0 and 0 elements on both vectors gives us FALSE because  It just means the “perpendicularity” (or orthogonality) of the zero vector isn’t particularly interesting or useful.}
+\CommentTok{\# so 0 and 3 are both intergers giving us TRUE}
+\CommentTok{\# TRUE and TRUE are similar giving us TRUE}
+\CommentTok{\# 2+3i elements are similar giving use TRUE}
+
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{the-logical-or-operator-code-example}{%
+\paragraph{3.3 The Logical OR operator Code
+Example}\label{the-logical-or-operator-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#{-}{-}{-}}
+\CommentTok{\# Let\textquotesingle{}s first create two vectors}
+\CommentTok{\#{-}{-}{-}}
+
+\NormalTok{v }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i) }
+\NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{FALSE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i) }
+
+\CommentTok{\# Now let\textquotesingle{}s use the logical not operator}
+
+\NormalTok{v}\SpecialCharTok{||}\NormalTok{t}
+
+\CommentTok{\# When we run this we get TRUE}
+\CommentTok{\# This is because Logical OR operator take first element of both the vectors and gives TRUE is one of them is TRUE }
+\CommentTok{\# From our vector the first element of both vector is an integer giving us TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{the-logical-and-operator-code-example}{%
+\paragraph{3.4 The Logical AND operator Code
+Example}\label{the-logical-and-operator-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\# Lets create two vectors}
+\CommentTok{\# {-}{-}{-}{-}}
+\NormalTok{v }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i) }
+\NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{FALSE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i) }
+
+\CommentTok{\# Now let\textquotesingle{}s use the logical ANd operator}
+
+\NormalTok{v }\SpecialCharTok{\&\&}\NormalTok{ t}
+
+\CommentTok{\# when we run this we get TRUE}
+\CommentTok{\# this is because logical AND takes first element of both the vectors and gives TRUE only if both are TRUE}
+\CommentTok{\# in our case the first element of vector one is an interger and so is the first element of the second vector giving us the output TRUE since they satisfiy the rule}
+
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{assignment-operators}{%
+\subsection{4. Assignment Operators}\label{assignment-operators}}
+
+\hypertarget{left-assignment-operator-code-example}{%
+\paragraph{4.1 Left Assignment Operator Code
+Example}\label{left-assignment-operator-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\#{-}{-}{-}{-}}
+\CommentTok{\# will create vectors using different left assignment operators}
+\CommentTok{\#{-}{-}{-}{-}}
+
+\NormalTok{v1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i) }
+\NormalTok{v2 }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i) }
+\NormalTok{v3 }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i) }
+
+\CommentTok{\# If we print one of the vector e.g v1}
+
+\NormalTok{v1}
+
+\CommentTok{\# we get 3+0i 1+0i 1+0i 2+3i}
+
+\CommentTok{\# If we print v2}
+
+\NormalTok{v2}
+
+\CommentTok{\# we get 3+0i 1+0i 1+0i 2+3i}
+\CommentTok{\# this mean \textquotesingle{}\textless{}\textquotesingle{} and \textquotesingle{}\textless{}\textless{}\textquotesingle{} both give the same assignment}
+
+\CommentTok{\# If we print v3}
+
+\NormalTok{v3}
+
+\CommentTok{\# we get  3+0i 1+0i 1+0i 2+3i}
+\CommentTok{\# this means all the three operators works the same}
+
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{right-assignment-operator-code-example}{%
+\paragraph{4.2 Right Assignment Operator Code
+Example}\label{right-assignment-operator-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\#{-}{-}{-}}
+\CommentTok{\# We get to use the right assignment operator}
+\CommentTok{\# first we assign the vectors}
+\CommentTok{\# {-}{-}{-}{-}}
+\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i) }\OtherTok{{-}\textgreater{}}\NormalTok{ v1 }
+\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\SpecialCharTok{+}\NormalTok{3i) }\OtherTok{{-}\textgreater{}\textgreater{}}\NormalTok{ v2 }
+
+\CommentTok{\# if we print v1}
+
+\NormalTok{v1}
+
+\CommentTok{\# we get 3+0i 1+0i 1+0i 2+3i}
+
+\CommentTok{\# if we print v2}
+
+\NormalTok{v2}
+
+\CommentTok{\# we get 3+0i 1+0i 1+0i 2+3i}
+\CommentTok{\# both operators assigns similarily}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{variable-assignment}{%
+\subsection{5. Variable Assignment}\label{variable-assignment}}
+
+Variables can be assigned values using leftward, rightward and equal to
+operator.
+
+\hypertarget{right-assignment-operator-code-example-1}{%
+\paragraph{5.1 Right Assignment Operator Code
+Example}\label{right-assignment-operator-code-example-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\# Now letUse the right assignment operators to assign the vectors to the respective variables as shown below;}
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\# first we create vectors}
+\CommentTok{\# }
+\NormalTok{variable}\FloatTok{.1} \OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{)  }
+
+\NormalTok{variable}\FloatTok{.1}
+
+\CommentTok{\#when we run this we get 3 4 5 6}
+
+
+\CommentTok{\# create another vectors}
+
+\NormalTok{variable}\FloatTok{.2} \OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Hello"}\NormalTok{,}\StringTok{" there"}\NormalTok{)  }
+
+\NormalTok{variable}\FloatTok{.2}
+
+\CommentTok{\#when we run this we get "Hello"  " there"}
+
+\CommentTok{\# One more vector}
+
+\FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{,}\DecValTok{2}\NormalTok{) }\OtherTok{{-}\textgreater{}}\NormalTok{ variable}\FloatTok{.3} 
+
+\CommentTok{\# if we call }
+\NormalTok{variable}\FloatTok{.3}
+
+\CommentTok{\# We get  1 2}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{basic-data-types}{%
+\subsection{6. Basic Data Types}\label{basic-data-types}}
+
+There are several basic data types in R which are of frequent
+occurrence.
+
+\hypertarget{numeric-data-type-code-example}{%
+\paragraph{6.1 Numeric Data Type Code
+Example}\label{numeric-data-type-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\#{-}{-}{-}}
+\CommentTok{\# lets first assign a value to a variable}
+\CommentTok{\# {-}{-}{-}}
+\NormalTok{m }\OtherTok{=} \FloatTok{62.4}
+
+\CommentTok{\# if we print the variable we get the value as the output}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+Assigning a decimal value for any variable m, m will become a numeric
+type as shown above.
+
+\hypertarget{integer-data-type-code-example}{%
+\paragraph{6.2 Integer Data Type Code
+Example}\label{integer-data-type-code-example}}
+
+Any integer in R is created by invoking the as.integer() function as
+shown below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#{-}{-}{-}}
+\CommentTok{\# Let\textquotesingle{}t create an integer 3 and assign it to variable n}
+
+\NormalTok{n }\OtherTok{=} \FunctionTok{as.integer}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+
+\CommentTok{\#If we print n we get three}
+
+\NormalTok{n}
+
+
+\CommentTok{\# Let\textquotesingle{}s convert 3.14 to an integer and save it under variable p.}
+
+\NormalTok{p }\OtherTok{=} \FunctionTok{as.integer}\NormalTok{(}\FloatTok{3.14}\NormalTok{)}
+
+\NormalTok{p}
+
+\CommentTok{\# If we print p we get 3 since float 3 has been converted to 3}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{complex-data-type-code-example}{%
+\paragraph{6.3 Complex Data Type Code
+Example}\label{complex-data-type-code-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\# We can also assign a complex number and assign it to the variable k just as shown below}
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\# }
+\NormalTok{k }\OtherTok{=} \DecValTok{1} \SpecialCharTok{+}\NormalTok{ 2i  }
+
+\CommentTok{\# if we print k}
+
+\NormalTok{k}
+
+\CommentTok{\# we get 1+2i}
+
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{logical-data-type-code-example}{%
+\paragraph{6.4 Logical Data Type Code
+Example}\label{logical-data-type-code-example}}
+
+A logical value is created when comparison between variables is done as
+shown:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# To create a logical value we are first going to create two variables x and y variables}
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\#}
+\NormalTok{x }\OtherTok{=} \DecValTok{4}\NormalTok{;  y }\OtherTok{=} \DecValTok{6}   
+
+\CommentTok{\# Now we check whether x is greater than y}
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\# }
+\NormalTok{z }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{\textgreater{}}\NormalTok{ y  }
+
+\CommentTok{\# when we print z}
+
+\NormalTok{z}
+
+\CommentTok{\# We get FALSE since 4 isn\textquotesingle{}t greater than 6}
+
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{character-data-type-code-example}{%
+\paragraph{6.5 Character Data Type Code
+Example}\label{character-data-type-code-example}}
+
+A character value can also be created and stored in a variable g.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\# Convert the value 62.48 to a string and store it a variable g}
+\CommentTok{\# {-}{-}{-}}
+\CommentTok{\#}
+\NormalTok{g }\OtherTok{=} \FunctionTok{as.character}\NormalTok{(}\FloatTok{62.48}\NormalTok{)  }
+
+\CommentTok{\# Then print the character string g}
+
+\NormalTok{g}
+
+\CommentTok{\# We get a string : "62.48"}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}

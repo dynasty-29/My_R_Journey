@@ -1,0 +1,442 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Matrices},
+  pdfauthor={Dynasty},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Matrices}
+\author{Dynasty}
+\date{2022-07-12}
+
+\begin{document}
+\maketitle
+
+\hypertarget{matrices}{%
+\section{Matrices}\label{matrices}}
+
+A matrix is a two dimensional data structure that is similar to a vector
+but additionally contains the dimension attribute.
+
+\hypertarget{creating}{%
+\subsection{1. Creating}\label{creating}}
+
+When creating a matrix, the last two arguments to matrix tell it the
+number of rows and columns the matrix should have.
+
+\hypertarget{matrix-code-example}{%
+\paragraph{1.1 Matrix Code Example}\label{matrix-code-example}}
+
+You can use the byrow=TRUE argument to create a matrix by rows instead
+of by columns as shown below:
+
+\hypertarget{lets-create-a-matrix-mymat}{%
+\subparagraph{Let's create a matrix
+mymat}\label{lets-create-a-matrix-mymat}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mymat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{printing-out-matrix}{%
+\subparagraph{printing out matrix}\label{printing-out-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mymat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+\end{verbatim}
+
+\hypertarget{matrix-code-example-1}{%
+\paragraph{1.2 Matrix Code Example}\label{matrix-code-example-1}}
+
+\hypertarget{lets-use-the-byrowtrue-argument-to-create-a-matrix-by-rows-instead-of-by-columns-as-shown-below}{%
+\subparagraph{Let's use the byrow=TRUE argument to create a matrix by
+rows instead of by columns as shown
+below}\label{lets-use-the-byrowtrue-argument-to-create-a-matrix-by-rows-instead-of-by-columns-as-shown-below}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mymat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{,}\AttributeTok{ncol=}\DecValTok{3}\NormalTok{,}\AttributeTok{byrow=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{print-our-matrix}{%
+\subparagraph{print our matrix}\label{print-our-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mymat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9
+## [4,]   10   11   12
+\end{verbatim}
+
+\hypertarget{naming}{%
+\subsection{2. Naming}\label{naming}}
+
+\hypertarget{matrix-naming-code-example}{%
+\paragraph{2.1 Matrix Naming Code
+Example}\label{matrix-naming-code-example}}
+
+\hypertarget{in-order-to-remember-what-is-stored-in-a-matrix-you-can-add-the-names-of-the-columns-and-rows.-this-will-also-help-you-to-read-the-data-as-well-as-select-elements-from-the-matrix.}{%
+\paragraph{\# In order to remember what is stored in a matrix, you can
+add the names of the columns and rows. This will also help you to read
+the data as well as select elements from the
+matrix.}\label{in-order-to-remember-what-is-stored-in-a-matrix-you-can-add-the-names-of-the-columns-and-rows.-this-will-also-help-you-to-read-the-data-as-well-as-select-elements-from-the-matrix.}}
+
+\hypertarget{lets-create-our-matrix}{%
+\paragraph{Let's create our matrix}\label{lets-create-our-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{kenya }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{460.998}\NormalTok{, }\FloatTok{314.4}\NormalTok{) }
+\NormalTok{ethiopia }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{290.475}\NormalTok{, }\FloatTok{247.900}\NormalTok{) }
+\NormalTok{chad }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{309.306}\NormalTok{, }\FloatTok{165.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{then-create-a-matrix-geography-matrix}{%
+\paragraph{Then create a matrix geography
+matrix}\label{then-create-a-matrix-geography-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{geography\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(kenya, ethiopia, chad), }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{now-lets-start-naming}{%
+\subparagraph{Now let's start naming}\label{now-lets-start-naming}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{location }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Lat"}\NormalTok{, }\StringTok{"Long"}\NormalTok{)}
+\NormalTok{countries }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Kenya"}\NormalTok{, }\StringTok{"Ethiopia"}\NormalTok{, }\StringTok{"Chad"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{now-lets-name-the-columns-with-location}{%
+\subparagraph{Now let's name the columns with
+location}\label{now-lets-name-the-columns-with-location}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(geography\_matrix) }\OtherTok{\textless{}{-}}\NormalTok{ location}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{lets-name-the-rows-with-countries}{%
+\subsubsection{Let's name the rows with
+countries}\label{lets-name-the-rows-with-countries}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rownames}\NormalTok{(geography\_matrix) }\OtherTok{\textless{}{-}}\NormalTok{ countries}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{now-lets-print-final-product}{%
+\subparagraph{Now let's print final
+product}\label{now-lets-print-final-product}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{geography\_matrix}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Lat  Long
+## Kenya    460.998 314.4
+## Ethiopia 290.475 247.9
+## Chad     309.306 165.8
+\end{verbatim}
+
+\hypertarget{now-lets-create-a-matrix-family-with-column-names-name-age-gender-and-occupation.}{%
+\paragraph{Now let's create a matrix family with column names Name, Age,
+Gender and
+Occupation.}\label{now-lets-create-a-matrix-family-with-column-names-name-age-gender-and-occupation.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Matriachy }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Matriachy"}\NormalTok{, }\DecValTok{60}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"Queen"}\NormalTok{)}
+\NormalTok{Ryan }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Ryan"}\NormalTok{, }\DecValTok{7}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"Student"}\NormalTok{)}
+\NormalTok{Dynasty }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Dynasty"}\NormalTok{, }\DecValTok{30}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"Scientist"}\NormalTok{)}
+\NormalTok{Migan }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Migan"}\NormalTok{, }\DecValTok{26}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"Chef"}\NormalTok{)}
+\NormalTok{Wolfcode }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Wolfcode"}\NormalTok{, }\DecValTok{19}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"Engineer"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{family }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(Matriachy, Ryan, Dynasty, Migan, Wolfcode), }\AttributeTok{nrow =} \DecValTok{5}\NormalTok{, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Header }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Name"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Gender"}\NormalTok{, }\StringTok{"Occupation"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Name }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Matriachy"}\NormalTok{, }\StringTok{"Ryan"}\NormalTok{, }\StringTok{"Dynasty"}\NormalTok{, }\StringTok{"Migan"}\NormalTok{, }\StringTok{"Wolfcode"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(family) }\OtherTok{\textless{}{-}}\NormalTok{ Header}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rownames}\NormalTok{(family) }\OtherTok{\textless{}{-}}\NormalTok{ Name}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{family}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Name        Age  Gender Occupation 
+## Matriachy "Matriachy" "60" "F"    "Queen"    
+## Ryan      "Ryan"      "7"  "M"    "Student"  
+## Dynasty   "Dynasty"   "30" "F"    "Scientist"
+## Migan     "Migan"     "26" "F"    "Chef"     
+## Wolfcode  "Wolfcode"  "19" "M"    "Engineer"
+\end{verbatim}
+
+\hypertarget{adding-a-column}{%
+\subsection{3. Adding a Column}\label{adding-a-column}}
+
+You can add a row to a matrix using the rbind() function.
+
+\hypertarget{adding-a-column-code-example}{%
+\paragraph{3.1 Adding a Column Code
+Example}\label{adding-a-column-code-example}}
+
+\hypertarget{lets-create-an-x-matrix}{%
+\paragraph{let's create an x matrix}\label{lets-create-an-x-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{then-ass-a-column}{%
+\paragraph{Then ass a column}\label{then-ass-a-column}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cbind}\NormalTok{(x, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7    1
+## [2,]    2    5    8    2
+## [3,]    3    6    9    3
+\end{verbatim}
+
+\hypertarget{lets-add-a-column-residence-to-your-fictional-family-matrix}{%
+\subparagraph{Let's Add a column residence to your fictional family
+matrix}\label{lets-add-a-column-residence-to-your-fictional-family-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cbind}\NormalTok{(family, }\FunctionTok{c}\NormalTok{(}\StringTok{"Arabia Terra"}\NormalTok{, }\StringTok{"Amazonis Planitia"}\NormalTok{, }\StringTok{"Amazonis Planitia"}\NormalTok{, }\StringTok{"Arabia Terra"}\NormalTok{, }\StringTok{"Amazonis Planitia"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Name        Age  Gender Occupation                     
+## Matriachy "Matriachy" "60" "F"    "Queen"     "Arabia Terra"     
+## Ryan      "Ryan"      "7"  "M"    "Student"   "Amazonis Planitia"
+## Dynasty   "Dynasty"   "30" "F"    "Scientist" "Amazonis Planitia"
+## Migan     "Migan"     "26" "F"    "Chef"      "Arabia Terra"     
+## Wolfcode  "Wolfcode"  "19" "M"    "Engineer"  "Amazonis Planitia"
+\end{verbatim}
+
+\hypertarget{adding-a-row}{%
+\subsection{4. Adding a Row}\label{adding-a-row}}
+
+\hypertarget{adding-a-row-code-example}{%
+\paragraph{4.1 Adding a Row Code
+Example}\label{adding-a-row-code-example}}
+
+\hypertarget{lets-create-a-matrix}{%
+\paragraph{Let's create a matrix}\label{lets-create-a-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{now-lets-add-a-row-using-cbind}{%
+\paragraph{now let's add a row using
+cbind}\label{now-lets-add-a-row-using-cbind}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rbind}\NormalTok{(x,}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+## [4,]    1    2    3
+\end{verbatim}
+
+\hypertarget{lets-add-a-fictional-character-to-our-fictional-family-matrix}{%
+\paragraph{Let's Add a fictional character to our fictional family
+matrix}\label{lets-add-a-fictional-character-to-our-fictional-family-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rbind}\NormalTok{(family, }\FunctionTok{c}\NormalTok{(}\StringTok{"Ruby"}\NormalTok{, }\DecValTok{3}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"Youngling"}\NormalTok{, }\StringTok{"Amazonis Planitia"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in rbind(family, c("Ruby", 3, "F", "Youngling", "Amazonis Planitia")):
+## number of columns of result is not a multiple of vector length (arg 2)
+\end{verbatim}
+
+\begin{verbatim}
+##           Name        Age  Gender Occupation 
+## Matriachy "Matriachy" "60" "F"    "Queen"    
+## Ryan      "Ryan"      "7"  "M"    "Student"  
+## Dynasty   "Dynasty"   "30" "F"    "Scientist"
+## Migan     "Migan"     "26" "F"    "Chef"     
+## Wolfcode  "Wolfcode"  "19" "M"    "Engineer" 
+##           "Ruby"      "3"  "F"    "Youngling"
+\end{verbatim}
+
+\end{document}
