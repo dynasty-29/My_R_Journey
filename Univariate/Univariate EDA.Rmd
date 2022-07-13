@@ -1,0 +1,89 @@
+---
+title: "Univariate EDA"
+author: "Dynasty"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Univariate EDA**
+
+# Univariate Graphical Exploratory Data Analysis
+
+## 1. Measures of Central Tendency
+
+Before embarking on developing statistical models and generating predictions, it is essential to understand our data. This is typically done using conventional numerical and graphical methods.
+
+
+We will be using the hills dataset, this dataset contains information on hill climbs made by various athletes
+
+```{r}
+library(MASS)
+head(hills)
+```
+
+
+Rows and columns 
+
+```{r}
+dim(hills)
+```
+
+#### Mean Code Example 1.1 
+
+Find the mean of the distance covered by the athletes and assigning the mean to the variable athletes.dist.mean
+
+```{r}
+athletes.dist.mean <- mean(hills$dist)
+athletes.dist.mean
+```
+
+The mean distance covered is 7.528571
+
+
+#### Median Code Example 1.2
+
+Finding the median which is the middle most value of the distance covered dist
+
+```{r}
+athletes.dist.median <- median(hills$dist)
+athletes.dist.median
+```
+
+The meadian is 6
+
+#### Mode Code Example 1.3
+
+Find the mode which is the value that has highest number of occurrences in a set of data. 
+
+Unfotunately, R does not have a standard in-built function to calculate mode so we have to build one, We create the mode function that will perform our mode operation for us
+
+```{r}
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+```
+
+
+Now we Calculate the mode using out getmode() function
+
+```{r}
+athletes.dist.mode <- getmode(hills$dist)
+athletes.dist.mode
+```
+
+##### Let's Challenge Ourselves
+Will Find the mean, median, mode of the total evening calls given the following dataset 
+
+Dataset url = http://bit.ly/CustomerSignatureforChurnAnalysis
+
+```{r}
+library(data.table)
+churn <- fread('http://bit.ly/CustomerSignatureforChurnAnalysis')
+head(churn)
+```
+

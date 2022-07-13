@@ -33,6 +33,9 @@ We then plot a boxplot to help us visualise any existing outliers
 ```{r}
 boxplot(A)
 ```
+
+
+
 We have an outlier as displayed by the plot above
 
 
@@ -112,6 +115,8 @@ Identifying the numeric class (max_capacity) in the data and evaluating if there
 ```{r}
 boxplot(bus_dataset$max_capacity, ylab = "max_capacity")
 ```
+
+
 We can also try this using a ggplot
 
 ```{r}

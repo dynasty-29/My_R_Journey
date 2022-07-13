@@ -1,0 +1,182 @@
+---
+title: "Nulls"
+author: "Dynasty"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Missing Data
+
+## 1. Finding Missing Values
+
+
+In R, the missing values are shown by the symbol NA. To identify missing values in your dataset the function is.na() is normally used.
+
+#### Finding Missing Values Example 1.1 
+```{r}
+#Install tidyr package
+ 
+install.packages('tidyr')
+ 
+ 
+#Load the library
+ 
+library(tidyr)
+```
+
+
+Let's create a dataset dt
+
+```{r}
+Name <- c("John", "Tim", NA)
+Sex <- c("men", "men", "women")
+Age <- c(45, 53, NA)
+dt <- data.frame(Name, Sex, Age)
+```
+
+
+We print it out to view
+
+```{r}
+dt
+```
+
+Now let's identify missing data in our dataset
+
+```{r}
+is.na(dt)
+```
+
+We have a TRUE meaning we have null values
+
+We can also check the total number of missing values in each column with the code below
+
+```{r}
+colSums(is.na(dt))
+```
+
+So we have 1 for name column and one for age column but none for sex column
+
+
+## 2. Dealing with Missing Values
+
+
+Using na.omit() to omit all rows containing missing values.
+
+#### Dealing with Missing Values Code Example 2.1
+
+First let's see all rows with no missing values
+```{r}
+na.omit(dt)
+```
+
+We have two clean rows
+
+Now let's record/fill the missing values in a column with a number
+```{r}
+dt$Age[is.na(dt$Age)] <- 99
+
+dt
+```
+
+So we have filled the missing value inthe age column with 99
+
+
+We can also try filling the missing value with mean value of the column, as shown below
+
+```{r}
+dt$Age[is.na(dt$Age)] <- mean(dt$Age, na.rm = TRUE)
+```
+
+Let's see the magic
+
+```{r}
+dt
+```
+
+We now have 49 which its the mean of 45 and 53
+
+Using the given bus dataset below, will find the missing values of the payment_method and travel_to columns with athen appropriate values
+
+First we import our data
+```{r}
+library("data.table")
+bus_dataset <- fread('http://bit.ly/BusNairobiWesternTransport')
+```
+A sneak peek of how the data looks like
+
+```{r}
+head(bus_dataset)
+```
+
+Our focus is on two particular columns payment method and travel to columns. 
+
+
+Lets just call the whole data frame
+
+
+```{r}
+is.na(bus_dataset)
+```
+We have no nulls in our dataframe.
+
+
+Let,s see how we call a specific column
+
+```{r}
+is.na(bus_dataset$payment_method)
+```
+```{r}
+is.null(bus_dataset$travel_to)
+
+```
+
+
+Let's have more fun by cleaning the dataset below
+Dataset url = http://bit.ly/MS-PropertyDataset
+
+```{r}
+property <- fread('http://bit.ly/MS-PropertyDataset')
+```
+Let's see our dataset
+
+```{r}
+property
+```
+
+We now check for missing values
+
+```{r}
+is.na(property)
+```
+We see we have a few missing values in our dataset in column: PID, ST_NUM , NUM_BEDROOMS, NUM_BATH,SQ_FT and from the dataframe all our values inthese columns are numeric
+
+For PID column there is a sequence so will add 100005000 just for flow
+
+```{r}
+property$PID[is.na(property$PID)] <- 100005000
+```
+
+Let's see if this is in effect
+
+```{r}
+property
+```
+
+
+Our efforts are paying off
+
+
+We move to the next column ST_num and we see there is flow so will use fill() fucntion which fill the missing value with the previous value
+```{r}
+property%>%fill(ST_NUM)
+```
+
+
+Move on to the next column
+
