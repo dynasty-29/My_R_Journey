@@ -1,0 +1,129 @@
+---
+title: "Outliers"
+author: "Dynasty"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Outliers
+
+## 1. Screening for Outliers
+
+In the process of producing, collecting, processing and analyzing data, outliers can come from many sources and hide in many dimensions. An outlier is an observation that is numerically distant from the rest of the data. When reviewing a boxplot, an outlier is defined as a data point that is located outside the fences (“whiskers”) of the boxplot.
+
+
+We start by creating a vector
+```{r}
+A <- c(3, 2, 5, 6, 4, 8, 1, 2, 30, 2, 4)
+```
+
+
+Then print it out
+```{r}
+A
+```
+
+
+We then plot a boxplot to help us visualise any existing outliers
+
+```{r}
+boxplot(A)
+```
+We have an outlier as displayed by the plot above
+
+
+We can also put our outliers in a vector using function boxplot.stats as shown below
+```{r}
+boxplot.stats(A)$out
+```
+
+Outliers should be investigated carefully. Often they contain valuable information about the process under investigation or the data gathering and recording process. Before considering the possible elimination of these points from the data, one should try to understand why they appeared and whether it is likely similar values will continue to appear. Of course, outliers are often bad data points.
+
+## 2. Obvious Inconsistencies 
+
+An obvious inconsistency occurs when a record contains a value or combination of values that cannot correspond to a real-world situation. For example, a person's age cannot be negative, a man cannot be pregnant and an under-aged person cannot possess a drivers license.
+
+
+
+Say from our vector x above, values above 20 are obvious inconsistencies then we using logical indices to check for 
+
+```{r}
+non_greater_than_20 <- A > 20
+```
+
+We print this out
+```{r}
+non_greater_than_20
+```
+
+We only have one element in our vector that's greater than 20 giving us an outlier in our vector.
+
+#### Let's Challenge ourselves
+
+Will use the given bus dataset below, determine whether there are any obvious inconsistencies 
+Dataset url = http://bit.ly/BusNairobiWesternTransport
+
+First we load our dataset
+```{r}
+library(data.table) 
+library(tidyverse) 
+```
+
+```{r}
+bus_dataset <- fread('http://bit.ly/BusNairobiWesternTransport')
+```
+
+Let's preview this dataset
+
+#### Viewing entire dataset
+
+```{r}
+View(bus_dataset)
+```
+
+#### Viewing Dataset Info
+
+```{r}
+str(bus_dataset)
+```
+
+#### Viewing number of records inthe dataset
+
+```{r}
+dim(bus_dataset)
+```
+
+#### Viewing dataset class attribute 
+```{r}
+class(bus_dataset)
+```
+
+##### Previewing first 5 rows
+```{r}
+head(bus_dataset)
+```
+
+Identifying the numeric class (max_capacity) in the data and evaluating if there are any outliers
+
+```{r}
+boxplot(bus_dataset$max_capacity, ylab = "max_capacity")
+```
+We can also try this using a ggplot
+
+```{r}
+ggplot(bus_dataset) +
+  aes(x = "", y = max_capacity) +
+  geom_boxplot(fill = "#0c4c8a") +
+  theme_minimal()
+```
+
+We can also confirm this as follow
+
+```{r}
+boxplot.stats(bus_dataset$max_capacity)$out
+```
+
