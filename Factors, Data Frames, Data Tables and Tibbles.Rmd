@@ -359,9 +359,12 @@ You can create a new tibble from individual vectors with tibble(). tibble() will
 #### 4.1 Creating a Tibble Code Example
 
 Let's create a tibble tb
+```{r}
+install.packages("tibble")
+```
 
 ```{r}
-library(dplyr)
+library(tibble)
 ```
 
 
@@ -382,4 +385,58 @@ tb
 ### Selecting a Tibble Code Example
 
 #### 4.1 Selecting a Tibble Code Example
+# Question: Find out what happens when we print the following 
+# ---
+# OUR CODE GOES BELOW
+# 
+```{r}
+tb[1,]
+```
+```{r}
+tb[1,]
+```
+
+
+```{r}
+tb[1:2, ] 
+```
+
+
+```{r}
+tb[,1]
+```
+
+```{r}
+tb[,1:2 ]
+```
+Let's Select the second and third rows
+```{r}
+tb[2:3, ] 
+```
+
+ 
+ ### Sorting a Tibble
+
+#### 4.1 Sorting a Tibble Code Example
+
+Let's Find out what happens when we sort by doing the following 
+```{r}
+sorted_by_1 <- tb[order(tb$z),]
+sorted_by_1
+```
+We see we have sorted column z in ascending order
+
+
+##### Let's sort x column in descending order
+
+```{r}
+sorted_by_2 <- tb[order(-tb$x),]
+sorted_by_2
+```
+
+##### Let's sort in ascending order by x below
+```{r}
+sorted_by_3 <- tb[order(tb$x),]
+sorted_by_3
+```
 
