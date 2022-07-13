@@ -1,0 +1,136 @@
+---
+title: "Duplicates"
+author: "Dynasty"
+date: '`r Sys.Date()`'
+output: html_document
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Duplicated Data
+
+### 1. Identifying Duplicated Data
+
+R checks for duplicates across rows through the duplicated() function. 
+
+#### Identifying Duplicated Data Code Example 1.1 
+
+
+Let's identify dupliccates inthe data below
+
+```{r}
+x1 <- c(2, 4, 5, 6)
+x2 <- c(2, 3, 5, 6)
+x3 <- c(2, 4, 5, 6)
+x4 <- c(2, 4, 5, 6)
+df <- data.frame(rbind(x1, x2, x3, x4))
+df
+```
+
+
+
+Let's now find duplicated rows in our dataset
+
+```{r}
+duplicated_rows <- df[duplicated(df),]
+```
+
+
+
+we print out the variable to see if we have any duplicated rows
+
+```{r}
+duplicated_rows 
+```
+
+
+We have two duplicated rows
+
+
+Removing these duplicated rows in the dataset or showing these unique items and assigning to a variable unique_items below
+
+```{r}
+unique_items <- df[!duplicated(df), ]
+unique_items
+```
+
+
+
+ we can also remove duplicated rows in the dataset or show the unique items using the unique() function
+
+```{r}
+unique_items2 <- unique(df)
+unique_items2
+
+```
+
+
+
+### Challenge 1
+
+We are going to display and delete the only duplicate records in the iris dataset below:
+
+```{r}
+head(iris)
+```
+
+```{r}
+dim(iris)
+```
+
+
+```{r}
+iris_duplicated_rows <- iris[duplicated(iris),]
+iris_duplicated_rows
+```
+
+We only have one duplicated row, so going to drop this duplicated row
+
+```{r}
+unique(iris)
+```
+
+
+Our row count has changed from 150 to 149 meaning the duplicated row has been dropped
+
+
+
+### Challenge 2
+
+Will check for duplicates and drop them in the following dataset
+
+```{r}
+library("data.table")
+video_games <- fread('http://bit.ly/VideoGamesDataset')
+```
+
+
+Get a grimpse of our dataset
+
+```{r}
+head(video_games)
+```
+
+
+Number of rows and columns
+
+```{r}
+dim(video_games)
+```
+
+
+Now we check for duplicates
+```{r}
+Video_game_duplicated <- video_games[duplicated(video_games),]
+Video_game_duplicated
+```
+
+
+
+We have 707 rows duplicated, we are going to drop them
+```{r}
+unique(video_games)
+```
+
