@@ -1,0 +1,385 @@
+---
+title: "Factors, Data Frames, Data Tables and Tibbles"
+author: "Dynasty"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Factors, Data Frames, Data Tables and Tibbles
+
+## 1. Factors
+
+As we have noted, factors are variables in R which take on a limited number of different values; such variables are often referred to as categorical variables. 
+
+In a dataset, we can distinguish two types of variables: categorical and continuous.
+
+In a categorical variable, the value is limited and usually based on a particular finite group. For example, a categorical variable can be countries, year, gender, occupation.
+A continuous variable, however, can take any values, from integer to decimal. For example, we can have the revenue, price of a share, etc.
+
+#### 1.1 Factors Code Example
+
+Let's create a vector v
+
+```{r}
+v <- c(1,3,5,8,2,1,3,5,3,5)
+```
+
+Let's determine if our vector is a factor
+
+```{r}
+is.factor(v)
+```
+
+Let's calculate the categorical distribution 
+
+```{r}
+factor(v)
+```
+
+Assign factor v tox and print out x 
+```{r}
+x <- factor(v)
+```
+
+Let's determine our x is a factor or not
+
+```{r}
+is.factor(x)
+```
+
+#### 1.2 Factors Code Example
+First we create a vector as input, check whether its a factor, apply the factor function to create a factor from the vector
+
+```{r}
+data <- c("East","West","East","North","North","East","West","West","West","East","North")
+```
+
+Let's print out our vector
+```{r}
+data
+```
+
+
+Now let's check if our vector is a factor
+
+```{r}
+is.factor(data)
+```
+
+So it's not a factor so will apply the factor fuction to create a factor from our vector
+
+```{r}
+factor_data <- factor(data) 
+```
+
+Let's see our new created factor
+
+```{r}
+factor_data
+```
+
+
+Now we check if its a factor
+
+```{r}
+is.factor(factor_data)
+```
+
+
+#### 1.3 Factors Code Example 
+We now move to creating a factor, determine and check the levels
+
+```{r}
+sex <- factor(c("male", "female", "female", "male"))
+```
+
+
+##### Determine the levels
+```{r}
+levels(sex)
+```
+
+We can also check the number of levels using nlevels()
+
+```{r}
+nlevels(n)
+```
+
+
+ Sometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”) or it is required by particular type of analysis. Additionally, specifying the order of the levels allows us to compare levels:
+ 
+```{r}
+food <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
+```
+ 
+Now we print out levels of food
+
+```{r}
+levels(food)
+```
+
+## 2. Data Frames
+
+A data frame is used for storing data tables. Unlike a matrix in data frame each column can contain different modes of data.
+
+### Creating a Dataframe 
+
+#### 2.1 Creating a Dataframe Code Example
+
+
+Let's create a data frame called BMI
+
+```{r}
+BMI <- data.frame( 
+    gender  = c("Male", "Male","Female"), 
+    height  = c(152, 171.5, 165), 
+    weight  = c(81,93, 78), 
+    Age     = c(42,38,26)
+) 
+```
+
+
+We print it out below
+
+```{r}
+BMI
+```
+
+###### Let's challenge ourselves
+
+Create a data frame family with column names Name, Age, Gender and Occupation. Populate it with 5 your own family members
+
+```{r}
+family <- data.frame(
+  Name = c("Jinx", "Vi", "Jayce", "Ekko", "Mylo"),
+    gender  = c("Female", "Female", "Male", "Male","Male"), 
+    Age  = c(15, 26, 22, 24, 27), 
+    Occupation  = c("Genius", "Master", "Skater", "Swordsman", "Jerk")
+  ) 
+```
+
+Now let's print out our family
+```{r}
+family
+```
+### Selecting Elements From a DataFrame 
+
+#### 2.2 Selecting Elements From a DataFrame Code Example
+
+Let's select elements from the BMI dataframe
+
+#### Selecting row 1
+```{r}
+BMI[1,]
+```
+
+#### Selecting rows 1 and 2
+```{r}
+BMI[1:2, ]
+```
+
+#### Selecting column 1
+```{r}
+BMI[,1]
+```
+
+#### Selecting column 1 and 2
+```{r}
+BMI[,1:2]
+```
+
+#### Selecting row 1 in column 2
+```{r}
+BMI[1,2]
+```
+
+#### Seelecting column 2
+```{r}
+BMI[,2]
+```
+
+Now let's select the second and third members  of the family data frame
+
+```{r}
+family[2:3, ]
+```
+
+### Sorting
+
+#### 2.3 Sorting Code Example
+
+Sorting the BMI dataframe by using the order() function
+
+##### Sort in ascending order by gender
+```{r}
+sorted_by_gender <- BMI[order(BMI$gender),]
+```
+
+```{r}
+sorted_by_gender
+```
+
+#### Sort in descending order by weight
+
+```{r}
+sorted_by_weight <- BMI[order(-BMI$weight),]
+```
+
+```{r}
+sorted_by_weight
+```
+
+#### Sort in descending order by gender
+
+```{r}
+sorted_by_gender <- BMI[order(BMI$gender),]
+```
+
+```{r}
+sorted_by_gender
+```
+
+## 3. Data Tables
+
+As we have mentioned, a data table provides an enhanced version of data.frames.
+
+### Creating a Data Table 
+
+The data.table R package is considered as the fastest package for data manipulation.
+
+#### 3.2 Creating a Data Table Code Example
+
+Let's create a data table DT
+
+```{r}
+DT = data.table(
+  ID = c("b","b","b","a","a","c"),
+  a = 1:6,
+  b = 7:12,
+  c = 13:18
+)
+```
+
+Let's load the data.table library
+```{r}
+library(data.table)
+```
+
+Let's see when we call our table
+
+```{r}
+DT
+```
+
+
+### Selecting Elements From a Data Table
+
+#### 3.3 Selecting Elements From a Data Table Code Example
+
+Selecting elements from our table
+
+#### Selecting Row 1
+```{r}
+DT[1,]
+```
+
+#### Selecting Rows 1 to 2
+```{r}
+DT[1:2,]
+```
+
+#### Selecting first column
+
+```{r}
+DT[,1]
+```
+
+#### Selecting first and second column
+
+```{r}
+DT[,1:2]
+```
+
+#### Selecting First column first row
+
+```{r}
+DT[1,2]
+```
+
+#### Selecting 4th and 3rd rows
+
+```{r}
+DT[3:4,]
+```
+
+### Sorting a Data Table
+
+#### 3.4 Sorting a Data Table Code Example
+
+
+Sorting the datatable in ascending order by c
+
+```{r}
+sorted_by_c <- DT[order(DT$c),]
+```
+
+
+Print the sorted 
+
+```{r}
+sorted_by_c
+```
+
+
+#### Sorting in descending order by b
+
+```{r}
+sorted_by_b <- DT[order(-DT$b),]
+```
+
+Let's see our sorted
+
+```{r}
+sorted_by_b
+```
+
+
+## 4. Tibbles
+
+Tibbles are data frames, but they tweak some older behaviours to make life a little easier. They also have an enhanced print() method which makes them easier to use with large datasets containing complex objects
+
+### Creating a Tibble
+
+You can create a new tibble from individual vectors with tibble(). tibble() will automatically recycle inputs of length 1, and allows you to refer to variables that you just created, as shown below.
+
+#### 4.1 Creating a Tibble Code Example
+
+Let's create a tibble tb
+
+```{r}
+library(dplyr)
+```
+
+
+```{r}
+tb <- tibble(
+  x = 1:5, 
+  y = 1, 
+  z = x ^ 2 + y
+)
+```
+
+Printing our tibble
+
+```{r}
+tb
+```
+
+### Selecting a Tibble Code Example
+
+#### 4.1 Selecting a Tibble Code Example
+
