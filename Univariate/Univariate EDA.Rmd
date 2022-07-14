@@ -2,7 +2,9 @@
 title: "Univariate EDA"
 author: "Dynasty"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=TRUE}
@@ -86,4 +88,298 @@ library(data.table)
 churn <- fread('http://bit.ly/CustomerSignatureforChurnAnalysis')
 head(churn)
 ```
+
+
+
+Let's see number of rows and columns
+
+```{r}
+dim(churn)
+```
+
+#### **Data cleaning**
+
+Let's do some data cleaning
+
+
+**Checking for Missing values**
+
+```{r}
+is.null(churn)
+```
+
+We don't have null values.
+
+
+
+**Checking for Duplicates**
+
+
+```{r}
+churn_duplicated <- churn[duplicated(churn),]
+churn_duplicated
+```
+
+```{r}
+unique(churn)
+```
+
+
+
+
+We have no duplicates
+
+
+**Checking for Outliers**
+```{r}
+library("ggplot2")                                           # Load ggplot2
+```
+
+
+We will focus on the numeric columns
+
+```{r}
+boxplot(churn$area_code)
+```
+
+```{r}
+boxplot(churn$account_length)
+```
+
+```{r}
+boxplot(churn$number_vmail_messages)
+```
+
+```{r}
+boxplot(churn$total_day_minutes)
+```
+
+```{r}
+boxplot(churn$total_day_calls)
+```
+
+```{r}
+boxplot(churn$total_day_charge)
+```
+
+```{r}
+boxplot(churn$total_eve_minutes)
+```
+
+```{r}
+boxplot(churn$total_eve_calls)
+```
+
+```{r}
+boxplot(churn$total_eve_charge)
+```
+
+```{r}
+boxplot(churn$total_night_minutes)
+```
+
+```{r}
+boxplot(churn$total_night_calls)
+```
+
+```{r}
+boxplot(churn$total_night_charge)
+```
+
+```{r}
+boxplot(churn$total_intl_minutes)
+```
+
+```{r}
+boxplot(churn$total_intl_calls)
+```
+
+```{r}
+boxplot(churn$total_intl_charge)
+```
+
+
+```{r}
+boxplot(churn$number_customer_service_calls)
+```
+
+
+
+
+
+
+
+
+we have some columns with outliers
+
+
+### **Questions**
+
+**Find the minimum of total day calls**
+
+```{r}
+churn.dist.min <- min(churn$total_day_calls)
+churn.dist.min
+```
+
+**Find the maximum i.e. max() total day calls**
+
+```{r}
+churn.dist.max <- max(churn$total_day_calls)
+churn.dist.max
+```
+
+**Find the range i.e. range() of total day calls**
+```{r}
+churn.dist.range <- range(churn$total_day_calls)
+churn.dist.range
+```
+
+
+**Find the quantile of total day calls**
+
+```{r}
+churn.dist.quantile <- quantile(churn$total_day_calls)
+churn.dist.quantile
+```
+
+
+**Find the variance of total day calls**
+
+```{r}
+churn.dist.variance <- var(churn$total_day_calls)
+churn.dist.variance
+```
+
+
+**Find the standard deviation of total day calls**
+```{r}
+churn.dist.sd <- sd(churn$total_day_calls)
+churn.dist.sd
+```
+
+
+
+
+## **3. Univariate Graphical**
+
+#### Box Plots Code Example 3.1
+
+
+Lets create a boxplot graph for the distance using the boxplot() function
+
+```{r}
+boxplot(hills$dist)
+```
+
+
+
+
+
+
+
+The box plot of an observation variable is a graphical representation based on its quartiles, as well as its smallest and largest values. It attempts to provide a visual shape of the data distribution.
+
+#### Bar Graph Code Example 3.2
+
+A bar graph of a qualitative data sample consists of vertical parallel bars that shows the frequency distribution graphically.
+
+
+Let's Create a frequency distribution of the School variable using an R built-in database named painters
+
+
+```{r}
+head(painters)
+```
+
+```{r}
+dim(painters)
+```
+
+
+First Fetch the school column
+
+```{r}
+school <- painters$School
+```
+
+
+When we apply the table() function will compute the frequency distribution of the School variable 
+
+```{r}
+school_frequency <- table(school)
+school_frequency
+```
+
+
+
+Now we apply the barplot function to produce its bar graph
+
+```{r}
+boxplot(school_frequency)
+```
+
+
+
+
+##### **Challenge**
+
+Now we challenge ourselves, will create a bar graph of the total day calls in the customer signature dataset
+
+
+
+```{r}
+boxplot(churn$total_day_calls)
+```
+
+
+
+
+
+
+#### **Histogram Code Example 3.3**
+
+A histogram shows the frequency distribution of a quantitative variable. The area of each bar is equal to the frequency of items found in each class.
+
+
+Will Create a histogram using the faithful dataset 
+
+```{r}
+head(faithful)
+```
+
+
+
+Then applying the hist() function to produce the histogram of the eruptions variable 
+
+```{r}
+hist(faithful$eruptions)
+```
+
+
+
+
+
+
+Now let's Create a histogram of the total day minutes in the customer signature dataset
+
+```{r}
+hist(churn$total_day_minutes)
+```
+
+
+
+
+
+Let's have more fun with the churn data set
+```{r}
+hist(churn$total_eve_minutes)
+hist(churn$total_night_minutes)
+hist(churn$total_intl_minutes)
+hist(churn$number_customer_service_calls)
+hist(churn$total_eve_charge)
+hist(churn$total_intl_charge)
+hist(churn$total_night_charge)
+```
+
 
