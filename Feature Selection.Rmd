@@ -1,0 +1,456 @@
+---
+title: "Feature Selection"
+author: "Dynasty"
+date: '`r Sys.Date()`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Feature Selection in Unsupervised Learning**
+
+Will cover some algorithms used in feature selection
+
+### **A. Filter Methods**
+
+We can use the find Correlation function included in the caret package to create a subset of variables. 
+This function would allows us to remove redundancy by correlation using the given data set. 
+It would search through a correlation matrix and return a vector of integers corresponding to the columns, to remove or reduce pair-wise correlations.
+
+
+Loading data set
+```{r}
+path<-"http://bit.ly/FeatureSelectionDataset" 
+
+Dataset<-read.csv(path, sep = ",", dec = ".",row.names = 1)
+Dataset<-Dataset[-4] 
+head(Dataset,3)
+```
+Libraries
+```{r}
+#Caret package
+suppressWarnings(
+        suppressMessages(if
+                         (!require(caret, quietly=TRUE))
+                install.packages("caret")))
+library(caret)
+
+
+# corplot packege
+suppressWarnings(
+        suppressMessages(if
+                         (!require(corrplot, quietly=TRUE))
+                install.packages("corrplot")))
+library(corrplot)
+```
+
+
+
+
+Calculating correlation matrix
+```{r}
+correlationMatrix <- cor(Dataset)
+```
+
+Find attributes that are highly correlated
+```{r}
+highlyCorrelated <- findCorrelation(correlationMatrix, cutoff=0.75)
+```
+
+Highly correlated attributes
+```{r}
+highlyCorrelated
+```
+
+
+```{r}
+names(Dataset[,highlyCorrelated])
+```
+
+We can remove the variables with a higher correlation and comparing the results graphically as shown below
+
+```{r}
+Dataset2<-Dataset[-highlyCorrelated]
+```
+
+
+Performing our graphical comparison
+```{r}
+par(mfrow = c(1, 2))
+corrplot(correlationMatrix, order = "hclust")
+corrplot(cor(Dataset2), order = "hclust")
+```
+
+
+
+### **B. Wrapper Methods**
+We use the clustvarsel package that contains an implementation of wrapper methods. 
+The clustvarsel function will implement variable section methodology for model-based clustering to find the optimal subset of variables in a dataset.
+
+Load the data set
+```{r}
+path<-"http://bit.ly/FeatureSelectionDataset2" 
+Dataset<-read.csv(path, sep = ",", dec = ".",row.names = 1)
+head(Dataset)
+```
+
+Loading important libraries
+```{r}
+suppressWarnings(
+        suppressMessages(if
+                         (!require(clustvarsel, quietly=TRUE))
+                install.packages("clustvarsel")))
+                         
+library(clustvarsel)
+suppressWarnings(
+        suppressMessages(if
+                         (!require(mclust, quietly=TRUE))
+                install.packages("mclust")))
+library(mclust)
+```
+
+Sequential forward greedy search (default)
+```{r}
+out = clustvarsel(Dataset, G = 1:5)
+out
+```
+
+The selection algorithm would indicate that the subset we use for the clustering model is composed of variables X1 and X2 and that other variables should be rejected. Having identified the variables that we use, we proceed to build the clustering model:
+```{r}
+Subset1 = Dataset[,out$subset]
+mod = Mclust(Subset1, G = 1:5)
+summary(mod)
+```
+
+```{r}
+plot(mod,c("classification"))
+```
+
+
+
+### **C. Embedded Methods**
+
+We will use the ewkm function from the wskm package.
+This is a weighted subspace clustering algorithm that is well suited to very high dimensional data.
+
+Install and load our wskm package
+```{r}
+suppressWarnings(
+        suppressMessages(if
+                         (!require(wskm, quietly=TRUE))
+                install.packages("wskm")))
+library(wskm)
+```
+
+
+```{r}
+set.seed(2)
+model <- ewkm(iris[1:4], 3, lambda=2, maxiter=1000)
+```
+
+Loading and installing our cluster package
+```{r}
+suppressWarnings(
+        suppressMessages(if
+                         (!require(cluster, quietly=TRUE))
+                install.packages("cluster")))
+library("cluster")
+```
+
+Cluster Plot against 1st 2 principal components
+```{r}
+clusplot(iris[1:4], model$cluster, color=TRUE, shade=TRUE,
+         labels=2, lines=1,main='Cluster Analysis for Iris')
+```
+
+
+
+
+Weights are calculated for each variable and cluster. 
+They are a measure of the relative importance of each variable with regards to the membership of the observations to that cluster. 
+The weights are incorporated into the distance function, typically reducing the distance for more important variables. Weights remain stored in the model and we can check them as follows:
+```{r}
+round(model$weights*100,2)
+```
+
+
+
+### **D. Feature Ranking**
+
+We will use the FSelector Package. This is a package containing functions for selecting attributes from a given dataset. 
+
+Install and load the required packages
+```{r}
+suppressWarnings(
+        suppressMessages(if
+                         (!require(FSelector, quietly=TRUE))
+                install.packages("FSelector")))
+library(FSelector)
+```
+
+Loading the data set
+```{r}
+path<-"http://bit.ly/FeatureSelectionDataset" 
+Dataset<-read.csv(path, sep = ",", dec = ".",row.names = 1)
+```
+
+
+```{r}
+Dataset<-Dataset[-4] 
+head(Dataset)
+```
+
+
+```{r}
+str(Dataset)
+```
+
+From the FSelector package, we use the correlation coefficient as a unit of valuation. 
+This would be one of the several algorithms contained in the FSelector package that can be used rank the variables.
+```{r}
+Scores <- linear.correlation(medv~., Dataset)
+Scores
+```
+From the output above, we observe a list containing rows of variables on the left and score on the right. In order to make a decision, we define a cutoff i.e. suppose we want to use the top 5 representative variables, through the use of the cutoff.k function included in the FSelector package. Alternatively, we could define our cutoff visually but in cases where there are few variables than in high dimensional datasets.
+
+
+cutoff.k: The algorithms select a subset from a ranked attributes. 
+```{r}
+Subset <- cutoff.k(Scores, 5)
+as.data.frame(Subset)
+```
+
+ We could also set cutoff as a percentage which would indicate that we would want to work with the percentage of the best variables.
+```{r}
+Subset2 <-cutoff.k.percent(Scores, 0.4)
+as.data.frame(Subset2)
+```
+
+Instead of using the scores for the correlation coefficient, we can use an entropy - based approach as shown below;
+```{r}
+Scores2 <- information.gain(medv~., Dataset)
+```
+
+Choosing Variables by cutoffSubset <- cutoff.k(Scores2, 5)
+```{r}
+Subset3 <- cutoff.k(Scores2, 5)
+as.data.frame(Subset3)
+```
+
+
+
+### **Challenge 1**
+Perform feature selection using filter methods on the given data set. Data set url = http://bit.ly/PokemonDataset
+
+```{r}
+library(data.table)
+pokemon <- fread('http://bit.ly/PokemonDataset')
+pokemon
+```
+
+
+```{r}
+is.null(pokemon)
+```
+
+
+```{r}
+gen <- (pokemon$Generation)
+gen.frequency <- table(gen)
+gen.frequency
+```
+
+
+```{r}
+leg <- (pokemon$Legendary)
+leg.frequency <- table(leg)
+leg.frequency
+```
+
+
+```{r}
+type1 <- (pokemon$`Type 1`)
+type1.frequency <- table(type1)
+type1.frequency
+```
+
+
+```{r}
+type2 <- (pokemon$`Type 2`)
+type2.frequency <- table(type2)
+type2.frequency
+```
+
+
+```{r}
+poke<-pokemon[,c(5:11)]
+head(poke)
+```
+
+a. Calculating the correlation matrix
+```{r}
+correlationMatrix <- cor(poke)
+correlationMatrix
+```
+
+b.  Find attributes that are highly correlated
+```{r}
+highlyCorrelated <- findCorrelation(correlationMatrix)
+```
+
+c. Highly correlated attributes
+```{r}
+highlyCorrelated
+
+names(Dataset[,highlyCorrelated])
+```
+
+d. Removing Redundant Features 
+```{r}
+poke2<-poke[-highlyCorrelated]
+```
+
+e. Performing our graphical comparison
+```{r}
+par(mfrow = c(1, 1))
+corrplot(correlationMatrix, order = "hclust")
+```
+
+
+
+
+
+### **Challenge 2**
+ Perform feature selection using wrapper methods on the given data set. Data set url = http://bit.ly/ZomatoDataset
+
+```{r}
+path <- 'http://bit.ly/ZomatoDataset'
+zomato<-read.csv(path, sep = ",")
+```
+
+
+
+ 
+ 
+### **Challenge 3**
+Compare embedded methods and feature ranking while performing feature selection on the given dataset. Dataset url = http://bit.ly/WineDataset2
+
+```{r}
+wine <- fread('http://bit.ly/WineDataset2')
+wine
+```
+
+
+```{r}
+is.null(wine)
+```
+
+
+```{r}
+set.seed(2)
+model <- ewkm(wine, 3, lambda=2, maxiter=1000)
+```
+
+
+```{r}
+clusplot(wine, model$cluster, color=TRUE, shade=TRUE,
+         labels=2, lines=1,main='Cluster Analysis for Wine Analysis')
+
+```
+
+
+```{r}
+round(model$weights*100,2)
+```
+
+
+
+### **Challenge 4**
+Given the following dataset, perform feature selection using all the above methods.  Dataset url = http://bit.ly/FIFADataset
+
+```{r}
+fifa <- fread('http://bit.ly/FIFADataset')
+fifa
+```
+
+
+```{r}
+fifa[is.na(fifa)] <- 15
+fifa
+```
+
+```{r}
+fif<-fifa[,c(3,5,7:19)]
+head(fif)
+```
+
+a. filter methods
+
+```{r}
+correlationMatrix <- cor(fif)
+highlyCorrelated <- findCorrelation(correlationMatrix, cutoff=0.75)
+```
+
+```{r}
+highlyCorrelated
+```
+
+```{r}
+Dataset2<-Dataset[-highlyCorrelated]
+```
+
+```{r}
+par(mfrow = c(1, 2))
+corrplot(correlationMatrix, order = "hclust")
+```
+
+
+```{r}
+
+corrplot(cor(fif), order = "hclust")
+```
+
+
+b. Wrapper Methods
+```{r}
+out = clustvarsel(fif)
+out
+Subset1 = fif[,out$subset]
+mod = Mclust(Subset1)
+summary(mod)
+```
+
+
+```{r}
+plot(mod,c("classification"))
+```
+
+c. Embedded Methods
+```{r}
+clusplot(fif, model$cluster, color=TRUE, shade=TRUE,
+         labels=2, lines=1,main='Cluster Analysis for FIFA Ranking')
+```
+
+
+```{r}
+round(model$weights*100,2)
+```
+
+d. Feature Ranking
+```{r}
+Scores <- linear.correlation(medv~., Dataset)
+Subset <- cutoff.k(Scores, 5)
+as.data.frame(Subset)
+```
+
+
+```{r}
+Scores2 <- information.gain(medv~., Dataset)
+```
+```{r}
+Subset3 <- cutoff.k(Scores2, 5)
+as.data.frame(Subset3)
+```
+

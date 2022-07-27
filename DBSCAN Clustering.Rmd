@@ -1,0 +1,147 @@
+---
+title: "DBSCAN Clustering"
+author: "Dynasty"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **DBSCAN Clustering**
+
+Performing DBSCAN Clustering on the given IRIS Data set.
+
+loading library necessary
+```{r}
+library("dbscan")
+```
+
+Loading the data set
+```{r}
+library(data.table)
+m<-read.csv("http://bit.ly/IrisDataset")
+head(m)
+```
+
+
+Removing class labels
+```{r}
+m1<-m[,c(1,2,3,4)]
+head(m1)
+```
+
+ Applying our DBSCAN algorithm. We want minimum 4 points with in a distance of eps(0.4)
+```{r}
+db<-dbscan(m1,eps=0.4,MinPts = 4)
+```
+
+Printing out the clustering results
+```{r}
+print(db)
+```
+
+
+Plotting our clusters
+```{r}
+hullplot(m1,db$cluster)
+```
+
+
+## **Challenge 1**
+
+
+Loading the data set
+```{r}
+library(data.table)
+df1 <- fread("http://bit.ly/MSDBSCANClusteringDataset")
+head(df1)
+```
+```{r}
+anyNA(df1)
+```
+a. Removing class labels
+```{r}
+df11<-df1[,c(1,2,3,4,5,6,7)]
+head(df11)
+```
+
+b. Applying our DBSCAN algorithm. We want minimum 4 points with in a distance of eps(0.4)
+```{r}
+db<-dbscan(df11,eps=0.4,MinPts = 4)
+```
+
+c. Printing out the clustering results
+```{r}
+print(db)
+```
+
+d. Plotting our clusters
+```{r}
+hullplot(df11,db$cluster)
+```
+
+## **Challenge 2**
+
+Loading the data set
+```{r}
+library(data.table)
+df2 <- fread("http://bit.ly/MSDBSCANClusteringDataset2")
+head(df2)
+```
+
+```{r}
+anyNA(df2)
+```
+
+a. Removing class labels
+```{r}
+df21<-df2[,c(2,3,4,5)]
+head(df21)
+```
+
+
+b. Applying our DBSCAN algorithm. We want minimum 4 points with in a distance of eps(0.4)
+```{r}
+db<-dbscan(df21,eps=0.4,MinPts = 4)
+```
+
+c. Printing out the clustering results
+```{r}
+print(db)
+```
+
+d. Plotting our clusters
+```{r}
+hullplot(df21,db$cluster)
+```
+
+## **Challenge 3**
+
+Loading the data set
+```{r}
+library(data.table)
+df3 <- fread("http://bit.ly/MSDBSCANClusteringDataset3")
+head(df3)
+```
+
+```{r}
+anyNA(df3)
+```
+
+a. Applying our DBSCAN algorithm. We want minimum 4 points with in a distance of eps(0.4)
+```{r}
+db<-dbscan(df3,eps=0.4,MinPts = 4)
+```
+
+b. Printing out the clustering results
+```{r}
+print(db)
+```
+
+c. Plotting our clusters
+```{r}
+hullplot(df3,db$cluster)
+```
+

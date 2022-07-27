@@ -1,0 +1,368 @@
+---
+title: "K-Mean Clustering"
+author: "Dynasty"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **R Programming: K-Means Clustering**
+
+Perform clustering analysis on the following data set using the K-Means clustering algorithm.
+
+```{r}
+require("datasets")
+```
+
+```{r}
+data("iris")
+```
+
+Viewing with the structure of the data set
+```{r}
+str(iris)
+```
+
+
+Statistical summary
+```{r}
+summary(iris)
+```
+
+Data set preview
+```{r}
+head(iris)
+```
+
+
+### **Pre-Processing the data set**
+
+Since clustering is a type of Unsupervised Learning, we would not require Class Label(output) during execution of our algorithm. We will, therefore, remove Class Attribute “Species” and store it in another variable. We would then normalize the attributes between 0 and 1 using our own function.
+
+
+```{r}
+iris.new<- iris[, c(1, 2, 3, 4)]
+iris.class<- iris[, "Species"]
+head(iris.new)
+```
+
+
+Previewing the class column
+```{r}
+head(iris.class)
+```
+
+Normalizing the data set so that no particular attribute has more impact on clustering algorithm than others.
+
+```{r}
+normalize <- function(x){
+  return ((x-min(x)) / (max(x)-min(x)))
+}
+
+iris.new$Sepal.Length<- normalize(iris.new$Sepal.Length)
+iris.new$Sepal.Width<- normalize(iris.new$Sepal.Width)
+iris.new$Petal.Length<- normalize(iris.new$Petal.Length)
+iris.new$Petal.Width<- normalize(iris.new$Petal.Width)
+head(iris.new)
+```
+
+
+Applying the K-means clustering algorithm with no. of centroids(k)=3
+```{r}
+result<- kmeans(iris.new,3) 
+```
+
+
+records preview
+```{r}
+result$size 
+```
+
+Getting the value of cluster center data point value(3 centers for k=3)
+```{r}
+result$centers 
+```
+
+ Getting the cluster vector that shows the cluster where each record falls
+ 
+```{r}
+result$cluster
+```
+ 
+
+Visualizing the  clustering results
+```{r}
+plot(airquality[,1:2], col = result$cluster) 
+```
+
+
+
+
+
+
+```{r}
+par(mfrow = c(2,2), mar = c(5,4,2,2))
+```
+
+Plotting to see how Sepal.Length and Sepal.Width data points have been distributed in clusters
+```{r}
+plot(iris.new[c(1,2)], col = result$cluster)
+```
+
+
+
+
+Plotting to see how Sepal.Length and Sepal.Width data points have been distributed originally as per "class" attribute in data set.
+```{r}
+plot(iris.new[c(1,2)], col = iris.class)
+```
+
+
+
+
+
+Plotting to see how Petal.Length and Petal.Width data points have been distributed in clusters
+
+```{r}
+plot(iris.new[c(3,4)], col = result$cluster)
+plot(iris.new[c(3,4)], col = iris.class)
+```
+
+
+Result of table shows that Cluster 1 corresponds to Virginica, Cluster 2 corresponds to Versicolor and Cluster 3 to Setosa.
+
+```{r}
+table(result$cluster, iris.class)
+```
+
+
+
+
+
+### **Challenge 1**
+Applying unsupervised learning to the given air quality data set below.
+
+```{r}
+data("airquality")
+str(airquality)
+```
+Summary statistic
+```{r}
+summary(airquality)
+```
+Previewing the data set
+```{r}
+head(airquality)
+```
+ checking for missing values
+```{r}
+anyNA(airquality)
+```
+
+Filling the missing values with mean
+```{r}
+airquality$Ozone[is.na(airquality$Ozone)] <- mean(airquality$Ozone, na.rm = TRUE)
+airquality$Solar.R[is.na(airquality$Solar.R)] <- mean(airquality$Solar.R, na.rm = TRUE)
+```
+
+```{r}
+anyNA(airquality)
+```
+
+We don't need the day column so we drop it
+```{r}
+airquality[,6]<- NULL 
+head(airquality)
+```
+
+
+**Pre-processing**
+
+Our class column will be month
+
+```{r}
+air.new<- airquality[, c(1, 2, 3, 4)]
+air.class<- airquality[, 5]
+head(air.new)
+```
+
+
+```{r}
+head(air.class)
+```
+
+**Applying Kmean clustering**
+
+```{r}
+air_result<- kmeans(air.new,5) 
+```
+
+
+Number of records for each cluster
+```{r}
+air_result$size 
+```
+
+
+Getting the value of cluster center datapoint value(3 centers for k=5)
+
+```{r}
+air_result$centers 
+```
+
+Getting the cluster vector that shows the cluster where each record falls
+
+```{r}
+air_result$cluster
+```
+
+Visualization
+```{r}
+plot(airquality[,1:2], col = air_result$cluster) 
+```
+
+
+
+
+Verifying results
+```{r}
+par(mfrow = c(2,2), mar = c(5,4,2,2))
+```
+
+
+Plotting to see how Ozone and Solar.R data points have been distributed in clusters
+```{r}
+plot(air.new[c(1,2)], col = air_result$cluster)
+```
+
+Plotting to see how Ozone and Solar.R data points have been distributed originally as per "class" attribute in data set
+```{r}
+plot(air.new[c(1,2)], col = air.class)
+```
+
+Plotting to see how Wind and Temp data points have been distributed in clusters
+```{r}
+plot(air.new[c(3,4)], col = air_result$cluster)
+plot(air.new[c(3,4)], col = air.class)
+```
+
+
+
+
+
+
+```{r}
+table(air_result$cluster, air.class)
+```
+
+
+
+
+### **Challenge 2**
+
+Creating a model that clusters the following data set.
+```{r}
+library(tidyverse)
+library(data.table)
+salo <- read.csv('http://bit.ly/SalaryDatasetClustering', sep = ',', header = TRUE)
+```
+
+previewing the data set
+```{r}
+salo
+```
+```{r}
+summary(salo)
+```
+structure
+```{r}
+str(salo)
+```
+
+
+
+Checking for missing values
+```{r}
+anyNA(salo)
+```
+
+Will drop some column that we don't need and those that are completely null
+```{r}
+salo[,1]<- NULL 
+salo[,1]<- NULL
+salo[,5]<- NULL
+salo[,7]<- NULL
+salo[,7]<- NULL
+salo[,7]<- NULL
+salo[,1]<- NULL
+head(salo)
+```
+
+
+Now will fill the nulls in our status column with mode since it's a categorical column
+```{r}
+salo[salo == ""] <- NA  
+head(salo)
+```
+
+```{r}
+salo$Status[is.na(salo$Status)] <- 'PT'
+head(salo)
+```
+
+
+```{r}
+salo$Status <− as.numeric(factor(as.matrix(salo$Status)))
+head(salo)
+```
+```{r}
+unique(salo)
+salo[is.na(salo)] <- 0
+```
+
+
+
+Pre processing
+```{r}
+salo.new<- salo[, c(1, 2, 3, 4, 5)]
+salo.class<- salo[, 6]
+head(salo.new)
+```
+
+```{r}
+head(salo.class)
+```
+
+
+
+Applying Kmean
+```{r}
+salo_result <- kmeans(salo.new,5) 
+```
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+## **Challenge**
+```{r}
+library(data.table)
+cust <- fread('https://archive.ics.uci.edu/ml/datasets/Wholesale+customers', sep = ',', header = TRUE)
+```
+
+```{r}
+head(cust)
+```
+

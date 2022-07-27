@@ -1,0 +1,316 @@
+---
+title: "Hierarchical Clustering"
+author: "Dynasty"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Hierarchical Clustering**
+ 
+## Example 
+
+Implement the hierarchical clustering algorithm using the Arrests data set
+
+```{r}
+data("USArrests")
+```
+
+Remove any missing value (i.e, NA values for not available) That might be present in the data
+
+```{r}
+df <- na.omit(USArrests)
+```
+
+```{r}
+head(df)
+```
+
+
+Before hierarchical clustering, we can compute some descriptive statistics
+
+```{r}
+desc_stats <- data.frame(
+  Min = apply(df, 2, min),    # minimum
+  Med = apply(df, 2, median), # median
+  Mean = apply(df, 2, mean),  # mean
+  SD = apply(df, 2, sd),      # Standard deviation
+  Max = apply(df, 2, max)     # Maximum
+)
+desc_stats <- round(desc_stats, 1)
+head(desc_stats)
+```
+
+We note that the variables have a large different means and variances. 
+This is explained by the fact that the variables are measured in different units; Murder, Rape, and Assault are measured as the number of occurrences per 100 000 people, and UrbanPop is the percentage of the state’s population that lives in an urban area.
+They must be standardized (i.e., scaled) to make them comparable. Recall that, standardization consists of transforming the variables such that they have mean zero and standard deviation one.
+
+As we don’t want the hierarchical clustering result to depend to an arbitrary variable unit, we start by scaling the data using the R function scale() as follows
+
+```{r}
+df <- scale(df)
+head(df)
+```
+
+First we use the dist() function to compute the Euclidean distance between observations, d will be the first argument in the hclust() function dissimilarity matrix
+
+```{r}
+d <- dist(df, method = "euclidean")
+```
+
+
+We then hierarchical clustering using the Ward's method
+
+```{r}
+res.hc <- hclust(d, method = "ward.D2" )
+```
+
+
+Lastly, we plot the obtained dendrogram
+```{r}
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+
+
+
+
+
+## **Challenge 1**
+
+Using the US Arrests data sets in the above example, compute hierarchical clustering with other linkage methods, such as single, median, average, centro id, Ward’s and McQuitty’s.
+
+a. single method
+```{r}
+res.hc <- hclust(d, method = "single" )
+```
+
+
+```{r}
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+b. median method
+```{r}
+res.hc <- hclust(d, method = "median" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+c. average method
+```{r}
+res.hc <- hclust(d, method = "average" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+d. centroid method
+```{r}
+res.hc <- hclust(d, method = "centroid" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+e. macquitty method
+```{r}
+res.hc <- hclust(d, method = "mcquitty" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+## **Challenge 2**
+
+Perform hierarchical clustering using the mtcars dataset
+```{r}
+df <- mtcars
+head(df)
+```
+ 
+ Checking for nulls
+```{r}
+anyNA(df)
+```
+ 
+ 
+ Descriptive statistics
+```{r}
+desc_stats <- data.frame(
+  Min = apply(df, 2, min),    # minimum
+  Med = apply(df, 2, median), # median
+  Mean = apply(df, 2, mean),  # mean
+  SD = apply(df, 2, sd),      # Standard deviation
+  Max = apply(df, 2, max)     # Maximum
+)
+desc_stats <- round(desc_stats, 1)
+head(desc_stats)
+
+```
+ 
+ 
+ 
+ Scaling
+```{r}
+df <- scale(df)
+head(df)
+```
+ 
+
+```{r}
+d <- dist(df, method = "euclidean")
+res.hc <- hclust(d, method = "ward.D2" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+
+
+
+
+
+```{r}
+res.hc <- hclust(d, method = "single" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+```{r}
+res.hc <- hclust(d, method = "average" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+
+```{r}
+res.hc <- hclust(d, method = "centroid" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+```{r}
+res.hc <- hclust(d, method = "mcquitty" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+## **Challenge 3**
+
+Perform hierarchical clustering using the iris dataset
+```{r}
+df <- iris
+head(df)
+```
+
+```{r}
+anyNA(df)
+```
+```{r}
+df$Species <- unclass(df$Species)
+head(df)
+```
+
+
+```{r}
+desc_stats <- data.frame(
+  Min = apply(df, 2, min),    # minimum
+  Med = apply(df, 2, median), # median
+  Mean = apply(df, 2, mean),  # mean
+  SD = apply(df, 2, sd),      # Standard deviation
+  Max = apply(df, 2, max)     # Maximum
+)
+
+head(desc_stats)
+```
+
+```{r}
+head(df)
+```
+
+
+```{r}
+d <- dist(df, method = "euclidean")
+res.hc <- hclust(d, method = "ward.D2" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+
+```{r}
+res.hc <- hclust(d, method = "single" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+```{r}
+res.hc <- hclust(d, method = "average" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+```{r}
+res.hc <- hclust(d, method = "centroid" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+
+```{r}
+res.hc <- hclust(d, method = "mcquitty" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+
+## **Challenge 4**
+
+Perform hierarchical cluster analysis on the given protein consumption.
+Dataset url = http://bit.ly/HierarchicalClusteringDataset
+
+```{r}
+library(data.table)
+data <- fread('http://bit.ly/HierarchicalClusteringDataset')
+head(data)
+```
+
+
+```{r}
+data$Country<- NULL
+head(data)
+```
+
+
+```{r}
+desc_stats <- data.frame(
+  Min = apply(data, 2, min),    # minimum
+  Med = apply(data, 2, median), # median
+  Mean = apply(data, 2, mean),  # mean
+  SD = apply(data, 2, sd),      # Standard deviation
+  Max = apply(data, 2, max)     # Maximum
+)
+desc_stats <- round(desc_stats, 1)
+head(desc_stats)
+```
+
+
+```{r}
+data <- scale(data)
+head(df)
+```
+
+
+```{r}
+d <- dist(data, method = "euclidean")
+res.hc <- hclust(d, method = "ward.D2" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+
+```{r}
+res.hc <- hclust(d, method = "single" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+```{r}
+res.hc <- hclust(d, method = "average" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+
+```{r}
+res.hc <- hclust(d, method = "centroid" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+
+```{r}
+res.hc <- hclust(d, method = "mcquitty" )
+plot(res.hc, cex = 0.6, hang = -1)
+```
+

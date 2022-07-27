@@ -1,0 +1,259 @@
+---
+title: "Principal Component Analysis"
+author: "Dynasty"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Principal Component Analysis**
+
+Will Perform and visualize PCA in the given mtcars data set.
+```{r}
+df <- mtcars
+head(df)
+```
+
+Selecting the numerical data (excluding the categorical variables vs and am)
+```{r}
+df <- mtcars[,c(1:7,10,11)]
+head(df)
+```
+
+We then pass df to the prcomp(). We also set two arguments, center and scale,  to be TRUE then preview our object with summary
+```{r}
+mtcars.pca <- prcomp(df, center = TRUE, scale. = TRUE)
+summary(mtcars.pca)
+```
+As a result we obtain 9 principal components, each which explain a percentage of the total variation of the data set. PC1 explains 63% of the total variance, which means that nearly two-thirds of the information in the data set (9 variables) can be encapsulated by just that one Principal Component. PC2 explains 23% of the variance. etc
+
+
+Calling str() to have a look at your PCA object
+```{r}
+str(mtcars.pca)
+```
+Here we note that our pca object: The center point (center), scaling (scale), standard deviation(sdev) of each principal component. The relationship (correlation or anti correlation, etc) between the initial variables and the principal components (rotation). The values of each sample in terms of the principal components (x)
+
+View the principal component loading
+```{r}
+mtcars.pca$rotation
+```
+
+
+See the principal components
+```{r}
+dim(mtcars.pca$x)
+```
+
+
+We will now plot our pca. This will provide us with some very useful insights i.e. which cars are most similar to each other
+```{r}
+library(dplyr)
+library(rpart)
+library(rpart.plot)
+```
+ Plotting the resultant principal components
+```{r}
+biplot(mtcars.pca, main = "Biplot", scale = 0.01)
+```
+
+From the graph we will see that the variables hp, cyl and disp contribute to PC1,with higher values in those variables moving the samples to the right on the plot. 
+
+
+Adding more detail to the plot, we provide arguments row names as labels
+```{r}
+biplot(mtcars.pca,  obs.scale = 1, var.scale = 1)
+```
+We now see which cars are similar to one another. The sports cars Maserati Bora, Ferrari Dino and Ford Pantera L all cluster together at the top
+
+
+We can also look at the origin of each of the cars by putting them into one of three categories i.e. US, Japanese and European cars.
+```{r}
+suppressWarnings(expr)
+mtcars.country <- c(rep("Japan", 3), rep("US",4), rep("Europe", 7),rep("US",3), "Europe", rep("Japan", 3), rep("US",4), rep("Europe", 3), "US", rep("Europe", 3))
+
+biplot(mtcars.pca,ellipse=TRUE,  groups=mtcars.country, obs.scale = 1, var.scale = 1)
+```
+
+
+We get to see that US cars for a cluster on the right. This cluster is characterized by high values for cyl, disp and wt. Japanese cars are characterized by high mpg. European cars are somewhat in the middle and less tightly clustered that either group.
+
+
+Let's plot PC3 and PC4
+```{r}
+biplot(mtcars.pca,ellipse=TRUE,choices=c(3,4),   groups=mtcars.country)
+```
+
+We find it difficult to derive insights from the given plot mainly because PC3 and PC4 explain very small percentages of the total variation, thus it would be surprising if we found that they were very informative and separated the groups or revealed apparent patterns.
+
+Having performed PCA using this data set, if we were to build a classification model to identify the origin of a car (i.e. European, Japanese, US), the variables cyl, disp, wt and mpg would be significant variables as seen in our PCA analysis.
+
+
+
+## **Challenge 1**
+
+Perform and plot PCA to the give Iris dataset. Reduce 4 dimensinal data into 2 or three dimensions. Provide remarks on your analysis.
+Dataset url = http://bit.ly/IrisDataset
+
+
+Loading the data set
+```{r}
+library(data.table)
+iris <- fread('http://bit.ly/IrisDataset')
+iris
+```
+
+Selecting the numerical attribute
+```{r}
+drf <- iris[,c(1:3)]
+head(drf)
+```
+
+Applying PCA using prcomp function, Need to scale / Normalize as PCA depends on distance measure
+
+```{r}
+my_pca <- prcomp(drf, scale = TRUE,
+                center = TRUE, retx = T)
+names(my_pca)
+```
+```{r}
+summary(my_pca)
+```
+
+View the principal component loading
+```{r}
+my_pca$rotation
+```
+
+See the principal components
+```{r}
+dim(my_pca$x)
+```
+
+Plotting the resultant principal components
+```{r}
+biplot(my_pca, main = "Biplot", scale = 0)
+```
+
+Compute standard deviation
+
+```{r}
+my_pca$sdev
+```
+ Compute variance
+```{r}
+my_pca.var <- my_pca$sdev ^ 2
+my_pca.var
+```
+
+Proportion of variance for a scree plot
+```{r}
+propve <- my_pca.var / sum(my_pca.var)
+propve
+```
+Plot variance explained for each principal component
+```{r}
+plot(propve, xlab = "principal component",
+            ylab = "Proportion of Variance Explained",
+            ylim = c(0, 1), type = "b",
+            main = "Scree Plot")
+```
+
+Plot the cumulative proportion of variance explained
+```{r}
+plot(cumsum(propve),
+    xlab = "Principal Component",
+    ylab = "Cumulative Proportion of Variance Explained",
+    ylim = c(0, 1), type = "b")
+```
+
+
+
+
+
+
+
+## **Challenge 2**
+
+Perform and plot the given housing dataset. Provide remarks to your analysis. 
+Data set url = http://bit.ly/BostonHousingDataset
+
+
+Loading the data set
+```{r}
+library(data.table)
+boston <- fread('http://bit.ly/BostonHousingDataset')
+boston
+```
+checking for nulls
+```{r}
+is.null(boston)
+```
+
+
+Applying PCA function
+```{r}
+bpca <- prcomp(boston, scale = TRUE,
+                center = TRUE, retx = T)
+names(bpca)
+```
+
+summary
+```{r}
+summary(bpca)
+```
+
+View the principal component loading
+```{r}
+bpca$rotation
+```
+
+See the principal components
+```{r}
+dim(bpca$x)
+```
+
+Plotting the resultant principal components
+```{r}
+biplot(bpca, main = "Biplot", scale = 0)
+```
+
+Compute standard deviation
+```{r}
+bpca$sdev
+```
+Compute variance
+```{r}
+bpca.var <- bpca$sdev ^ 2
+bpca.var
+```
+
+Proportion of variance for a scree plot
+```{r}
+propve <- bpca.var / sum(bpca.var)
+propve
+```
+Plot variance explained for each principal component
+```{r}
+plot(propve, xlab = "principal component",
+            ylab = "Proportion of Variance Explained",
+            ylim = c(0, 1), type = "b",
+            main = "Scree Plot")
+```
+
+Plot the cumulative proportion of variance explained
+```{r}
+plot(cumsum(propve),
+    xlab = "Principal Component",
+    ylab = "Cumulative Proportion of Variance Explained",
+    ylim = c(0, 1), type = "b")
+```
+
+Find Top n principal component
+```{r}
+which(cumsum(propve) >= 0.9)[1]
+```
+
